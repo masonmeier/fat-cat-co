@@ -1,0 +1,91 @@
+.directory {
+  height: 100%;
+  background-color: #f2f2f2;
+  margin-top: 1%;
+
+  .wrap {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+
+    .item-wrapper {
+      position: relative;
+      width: 49%;
+      height: 100%;
+      float: left;
+      background-color: #f2f2f2;
+    }
+
+    #item {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      animation-duration: 3s;
+      transition: transform .5s;
+    }
+
+    #item:hover {
+      transform: scale(1.02);
+    }
+
+    .store-exp {
+      position: relative;
+      width: 49%;
+      height: 100%;
+      float: left;
+      background-color: #e4e2c4;
+      text-align: right;
+      z-index: 1;
+      animation-name: slide-in;
+      animation-duration: 2s;
+      transition: transform .5s;
+    }
+
+    @keyframes slide-in {
+      from {
+        left: -100%;
+        opacity: 25%;
+      }
+
+      to {
+        left: 0;
+        opacity: 100%;
+      }
+    }
+
+    .store-explanation-title {
+      position: relative;
+      right: -5%;
+      font-size: 50px;
+    }
+
+    .explanation-holder {
+      position: relative;
+      width: 100%;
+      margin-top: 20%;
+    }
+
+    .shop-button-holder {
+      margin-right: 20%;
+    }
+
+    .shop-now {
+      font-family: 'Slabo 27px', serif;
+      background-color: #f1e3be;
+      color: black;
+      border-radius: 0;
+      width: 20%;
+      margin-top: 2%;
+      height: 30px;
+      transition: transform .5s;
+    }
+
+    .shop-now:hover {
+      background-color: ghostwhite;
+      transform: scale(1.1);
+    }
+  }
+}

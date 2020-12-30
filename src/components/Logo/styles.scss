@@ -1,0 +1,10 @@
+.slideshow-container {
+  height: 100%;
+  display: inline-block;
+}
+
+.logo {
+  max-height: 100%;
+  display: inline-block;
+  transition: transform .5s;
+}
