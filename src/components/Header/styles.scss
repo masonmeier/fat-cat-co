@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Meie+Script&display=swap");
+
 .header {
-  height: 6.5rem;
+  height: 2.5rem;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
   display: block;
   text-align: center;
@@ -33,9 +36,12 @@ Link {
 
 
 .store-title {
+  height: 100%;
   display: inline-block;
   position: relative;
-  float: right;
+  font-size: 22px;
+
+  font-family: 'Caveat', cursive;
 }
 
 .header-nav {

@@ -1,0 +1,31 @@
+.about-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .page-wrap {
+    width: 80%;
+    position: relative;
+    border: 1px solid #000000;
+    margin: 3%;
+    padding: 1%;
+  }
+}
+
+.description {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.graphic {
+  width: 50%;
+  display: inline-block;
+}
+.about-image-wrap {
+  width: 100%;
+}
+
+.about-image {
+  width: 100%;
+}

@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+
+
 .directory {
-  height: 100%;
+  height: 70vh;
   background-color: #f2f2f2;
   margin-top: 1%;
 
@@ -13,7 +16,13 @@
       width: 49%;
       height: 100%;
       float: left;
-      background-color: #f2f2f2;
+      background-color: #000000;
+      animation: logo-animation 6s infinite;
+    }
+
+    @keyframes logo-animation {
+      0% {background-color: black}
+      50% {background-color: white}
     }
 
     #item {
@@ -36,7 +45,7 @@
       width: 49%;
       height: 100%;
       float: left;
-      background-color: #e4e2c4;
+      background-color: #ffffff;
       text-align: right;
       z-index: 1;
       animation-name: slide-in;
@@ -57,9 +66,14 @@
     }
 
     .store-explanation-title {
+      font-family: 'Meie Script', cursive;
       position: relative;
-      right: -5%;
-      font-size: 50px;
+      right: -13%;
+      font-size: 40px;
+    }
+
+    .store-explanation {
+      margin-right: 10%;
     }
 
     .explanation-holder {
@@ -68,18 +82,24 @@
       margin-top: 20%;
     }
 
-    .shop-button-holder {
-      margin-right: 20%;
+    .catalog-btn-wrap {
+      text-align: right;
+      position: relative;
+      left: 23%;
     }
 
-    .shop-now {
-      font-family: 'Slabo 27px', serif;
-      background-color: #f1e3be;
-      color: black;
-      border-radius: 0;
-      width: 20%;
-      margin-top: 2%;
-      height: 30px;
+    .view-catalog {
+      display: block;
+      position: relative;
+      width: 30%;
+      padding: 2%;
+      margin: 2% auto;
+      text-align: center;
+      border: 1px solid #9e9e9e;
+      text-transform: uppercase;
+      background: black;
+      color: white;
+      cursor: pointer;
       transition: transform .5s;
     }
 

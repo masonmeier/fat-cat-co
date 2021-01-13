@@ -1,9 +1,7 @@
 import React from "react";
 import './styles.scss';
-import Logo1 from '../../assets/images/logos/cat1.png';
-import Logo2 from '../../assets/images/logos/cat2.png';
-import Logo3 from '../../assets/images/logos/cat3.png';
-import Logo4 from '../../assets/images/logos/cat4.png';
+import Logo1 from '../../assets/images/directory/roman-logo.png';
+import Logo2 from '../../assets/images/directory/roman-logo2.png';
 
 
 class Logo extends React.Component {
@@ -15,8 +13,6 @@ class Logo extends React.Component {
       images: [
         Logo1,
         Logo2,
-        Logo3,
-        Logo4
       ]
     };
   }

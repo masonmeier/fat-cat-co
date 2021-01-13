@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import ShopHoodies from './../../assets/images/directory/hoodie-3.png';
+import Logo from '../Logo';
+import { Link } from 'react-router-dom';
 
 const Directory = props => {
   return (
@@ -9,26 +10,20 @@ const Directory = props => {
         <div className="store-exp">
           <div className="explanation-holder">
             <h1 className="store-explanation-title">
-              The Cozy Cat Collection.
+              A creator of all things funk
             </h1>
             <p className="store-explanation">
-              Unique, limited run clothing to help cats find homes.
+              Check out what he's been making.
             </p>
           </div>
-          <div className="shop-button-holder">
-            <button className="shop-now">
-              Shop Now
-            </button>
+          <div className="catalog-btn-wrap">
+            <Link to='/catalog' className="view-catalog">
+              view catalog
+            </Link>
           </div>
         </div>
         <div className="item-wrapper">
-          <div
-            id="item"
-            style={{
-              backgroundImage: `url(${ShopHoodies})`
-            }}
-          >
-        </div>
+          <Logo />
         </div>
       </div>
     </div>
