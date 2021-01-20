@@ -1,63 +1,51 @@
+
 import React, { useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { auth, handleUserProfile } from './firebase/utils';
-import { connect } from 'react-redux';
-//pages
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { checkUserSession } from './redux/User/user.actions';
+
+// components
+import AdminToolbar from './components/AdminToolbar';
+
+// hoc
+import WithAuth from './hoc/withAuth';
+import WithAdminAuth from './hoc/withAdminAuth';
+
+// layouts
+import MainLayout from './layouts/MainLayout';
+import HomepageLayout from './layouts/HomepageLayout';
+import AdminLayout from './layouts/AdminLayout';
+import DashboardLayout from './layouts/DashboardLayout';
+
+// pages
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
-import Catalog from './pages/Catalog';
 import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
+import About from '../src/pages/About'
+import Catalog from './pages/Catalog';
 
-// higher order component (hoc)
-import WithAuth from './hoc/withAuth';
-
-//layouts
-import MainLayout from './layouts/MainLayout';
-import HomePageLayout from './layouts/HomePageLayout';
-
-//style
-import './default.scss'
-import About from './pages/About';
-
-import {setCurrentUser} from './redux/user/user.actions';
+//styles
+import './default.scss';
 
 const App = props => {
-  const { setCurrentUser, currentUser } = props;
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
-    const { setCurrentUser } = props;
-
-    const authListener = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await handleUserProfile(userAuth);
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
-          });
-        })
-      }
-
-      setCurrentUser(userAuth);
-    });
-
-    return () => {
-      authListener();
-    };
+    dispatch(checkUserSession());
   }, [])
 
 
     return (
       <div className="App">
+        <AdminToolbar />
         <Switch>
           <Route path="/" exact render={() => (
-            <HomePageLayout>
+            <HomepageLayout>
               <Homepage />
-            </HomePageLayout>
+            </HomepageLayout>
           )}/>
           <Route path="/registration" render={() => (
             <MainLayout>
@@ -66,7 +54,7 @@ const App = props => {
           )}/>
           <Route path="/login"
              render={() => (
-              <MainLayout currentUser={currentUser}>
+              <MainLayout>
                 <Login />
               </MainLayout>
           )}/>
@@ -78,13 +66,13 @@ const App = props => {
                  )}/>
           <Route path="/about"
                  render={() => (
-                   <MainLayout currentUser={currentUser}>
+                   <MainLayout>
                      <About />
                    </MainLayout>
                  )}/>
           <Route path="/catalog"
                  render={() => (
-                   <MainLayout currentUser={currentUser}>
+                   <MainLayout>
                      <Catalog />
                    </MainLayout>
                  )}/>
@@ -96,17 +84,18 @@ const App = props => {
                      </MainLayout>
                    </WithAuth>
                  )}/>
+          <Route path="/admin"
+                 render={() => (
+                   <WithAdminAuth>
+                     <AdminLayout>
+                       <Admin />
+                     </AdminLayout>
+                   </WithAdminAuth>
+                 )}/>
         </Switch>
       </div>
     );
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
-});
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default App;

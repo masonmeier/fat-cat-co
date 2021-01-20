@@ -1,46 +1,61 @@
-import React, { useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actions';
+
 import './styles.scss';
 
-import { signInWithGoogle, auth } from '../../firebase/utils';
 import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser
+});
 
 const SignIn = props => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [response, setResponse] = useState('')
+  const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm();
+      history.push('/');
+    }
+  }, [currentUser]);
 
   const resetForm = () => {
     setEmail('');
     setPassword('');
+    setResponse('');
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    //submit information to collection database
-    const response = await fetch('/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({post: {email, password}}),
-    });
-    const body = await response.text();
-    setResponse(body);
-    //submit firebase authentication
+    dispatch(emailSignInStart({email, password, response}));
     try {
+      const response = await fetch('/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({post: {email, password}}),
+      });
+      const body = await response.text();
+      setResponse(body);
 
-      await auth.signInWithEmailAndPassword(email, password);
-      resetForm();
-      props.history.push('/')
-    } catch(err) {
-      // console.log(err)
+    } catch (err) {
+      //console.log(err);
     }
   }
 
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInStart());
+  }
 
     const configAuthWrapper = {
       headline: 'LogIn'
@@ -72,7 +87,7 @@ const SignIn = props => {
 
               <div className="socialSignIn">
                 <div className="row">
-                  <Button onClick={signInWithGoogle}>
+                  <Button onClick={handleGoogleSignIn}>
                     Sign in with Google
                   </Button>
                 </div>
@@ -89,4 +104,4 @@ const SignIn = props => {
     );
 }
 
-export default withRouter(SignIn);
+export default SignIn;

@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 
-const HomePageLayout = props => {
+const HomepageLayout = props => {
   return (
     <div className="full-height">
       <Header {...props} />
@@ -13,4 +13,4 @@ const HomePageLayout = props => {
   );
 };
 
-export default HomePageLayout;
+export default HomepageLayout;
