@@ -80,17 +80,6 @@ export function* signUpUser({ payload: {
     return;
   }
   try {
-    yield fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({post: {displayName, email, password, confirmPassword}}),
-    });
-  } catch(err) {
-    //console.log(err)
-  }
-  try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName };
 
@@ -134,6 +123,7 @@ export function* googleSignIn() {
 }
 
 export function* onGoogleSignInStart() {
+  console.log('dispatch test')
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
 }
 

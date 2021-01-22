@@ -29,6 +29,21 @@ const Header = props => {
 
           <div className="header-nav">
 
+            <nav className="common-nav">
+              <ul>
+                <li>
+                  <Link to="/">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/search">
+                    Search
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
             {currentUser && (
               <ul>
                 <li>
@@ -42,13 +57,13 @@ const Header = props => {
                   </span>
                 </li>
                 <li>
-                  <Link to='/about'>
-                    About Roman
+                  <Link to='/catalog'>
+                    Catalog
                   </Link>
                 </li>
                 <li>
-                  <Link to='/'>
-                    Home
+                  <Link to='/about'>
+                    About Roman
                   </Link>
                 </li>
               </ul>
@@ -73,11 +88,6 @@ const Header = props => {
               <li>
                 <Link to='/about'>
                   About Roman
-                </Link>
-              </li>
-              <li>
-                <Link to='/'>
-                  Home
                 </Link>
               </li>
             </ul>

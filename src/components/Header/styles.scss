@@ -51,18 +51,15 @@ span {
 .header-nav {
   display: inline-block;
   position: relative;
-  //right: 10px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  transform: translateY(-50%);
+  text-align: left;
 }
 
 ul, li {
-  margin: 0;
+  margin-right: 1.5rem;
   padding: 0;
   text-decoration: none;
   color: black;
+  display: inline-block;
 }
 
 li {
@@ -86,5 +83,8 @@ li {
   cursor: pointer;
 }
 
+.common-nav {
+  display: inline-block;
+}
 
 
