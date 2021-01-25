@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './User/user.reducer';
-import productsReducer from './Products/products.reducer';
+import postsReducer from './Posts/posts.reducer';
 
 export default combineReducers({
   user: userReducer,
-  productsData: productsReducer
+  postsData: postsReducer
 });

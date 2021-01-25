@@ -1,11 +1,11 @@
-import { firestore } from './../../firebase/utils';
+import { firestore } from '../../firebase/utils';
 
-export const handleAddProduct = product => {
+export const handleAddPost = post => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
+      .collection('posts')
       .doc()
-      .set(product)
+      .set(post)
       .then(() => {
         resolve();
       })
@@ -15,13 +15,13 @@ export const handleAddProduct = product => {
   });
 }
 
-export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts=[] }) => {
+export const handleFetchPosts = ({ filterType, startAfterDoc, persistPosts=[] }) => {
   return new Promise((resolve, reject) => {
     const pageSize = 6;
 
-    let ref = firestore.collection('products').orderBy('createdDate').limit(pageSize);
+    let ref = firestore.collection('posts').orderBy('createdDate').limit(pageSize);
 
-    if (filterType) ref = ref.where('productCategory', '==', filterType);
+    if (filterType) ref = ref.where('postCategory', '==', filterType);
     if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
 
     ref
@@ -30,7 +30,7 @@ export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts
         const totalCount = snapshot.size;
 
         const data = [
-          ...persistProducts,
+          ...persistPosts,
           ...snapshot.docs.map(doc => {
             return {
               ...doc.data(),
@@ -51,10 +51,10 @@ export const handleFetchProducts = ({ filterType, startAfterDoc, persistProducts
   })
 }
 
-export const handleDeleteProduct = documentID => {
+export const handleDeletePost = documentID => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
+      .collection('posts')
       .doc(documentID)
       .delete()
       .then(() => {
@@ -67,18 +67,18 @@ export const handleDeleteProduct = documentID => {
   });
 }
 
-export const handleFetchProduct = (productID) => {
+export const handleFetchPost = (postID) => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
-      .doc(productID)
+      .collection('posts')
+      .doc(postID)
       .get()
       .then(snapshot => {
 
         if (snapshot.exists) {
           resolve({
             ...snapshot.data(),
-            documentID: productID
+            documentID: postID
           });
         }
       })

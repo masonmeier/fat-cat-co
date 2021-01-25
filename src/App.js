@@ -13,6 +13,7 @@ import WithAdminAuth from './hoc/withAdminAuth';
 // layouts
 import MainLayout from './layouts/MainLayout';
 import HomepageLayout from './layouts/HomepageLayout';
+import Search from './pages/Search';
 import AdminLayout from './layouts/AdminLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
@@ -24,7 +25,7 @@ import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
-// import ProductDetails from './pages/ProductDetails';
+// import PostDetails from './pages/PostDetails';
 // import Cart from './pages/Cart';
 // import Payment from './pages/Payment';
 // import Order from './pages/Order';
@@ -52,42 +53,25 @@ const App = props => {
           </HomepageLayout>
         )} />
         <Route path="/about" render={() => (
-                 <MainLayout>
-                   <About />
-                 </MainLayout>
-               )}/>
+           <MainLayout>
+             <About />
+           </MainLayout>
+         )}/>
         <Route path="/catalog" render={() => (
-                 <MainLayout>
-                   <Catalog />
-                 </MainLayout>
-               )}/>
-        {/*<Route exact path="/search" render={() => (*/}
-        {/*  <MainLayout>*/}
-        {/*    <Search />*/}
-        {/*  </MainLayout>*/}
-        {/*)} />*/}
-        {/*<Route path="/search/:filterType" render={() => (*/}
-        {/*  <MainLayout>*/}
-        {/*    <Search />*/}
-        {/*  </MainLayout>*/}
-        {/*)} />*/}
-        {/*<Route path="/product/:productID" render={() => (*/}
-        {/*  <MainLayout>*/}
-        {/*    <ProductDetails />*/}
-        {/*  </MainLayout>*/}
-        {/*)} />*/}
-        {/*<Route path="/cart" render={() => (*/}
-        {/*  <MainLayout>*/}
-        {/*    <Cart />*/}
-        {/*  </MainLayout>*/}
-        {/*)} />*/}
-        {/*<Route path="/payment" render={() => (*/}
-        {/*  <WithAuth>*/}
-        {/*    <MainLayout>*/}
-        {/*      <Payment />*/}
-        {/*    </MainLayout>*/}
-        {/*  </WithAuth>*/}
-        {/*)} />*/}
+           <MainLayout>
+             <Catalog />
+           </MainLayout>
+         )}/>
+        <Route exact path="/search" render={() => (
+          <MainLayout>
+            <Search />
+          </MainLayout>
+        )} />
+        <Route path="/search/:filterType" render={() => (
+          <MainLayout>
+            <Search />
+          </MainLayout>
+        )} />
         <Route path="/registration" render={() => (
           <MainLayout>
             <Registration />
@@ -111,13 +95,6 @@ const App = props => {
             </DashboardLayout>
           </WithAuth>
         )} />
-        {/*<Route path="/order/:orderID" render={() => (*/}
-        {/*  <WithAuth>*/}
-        {/*    <DashboardLayout>*/}
-        {/*      <Order />*/}
-        {/*    </DashboardLayout>*/}
-        {/*  </WithAuth>*/}
-        {/*)} />*/}
         <Route path="/admin" render={() => (
           <WithAdminAuth>
             <AdminLayout>

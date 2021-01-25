@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductStart, fetchProductsStart, deleteProductStart } from '../../redux/Products/products.actions';
+import { addPostStart, fetchPostsStart, deletePostStart } from '../../redux/Posts/posts.actions';
 import Modal from './../../components/Modal';
 import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
@@ -9,25 +9,25 @@ import LoadMore from './../../components/LoadMore';
 import CKEditor from 'ckeditor4-react';
 import './styles.scss';
 
-const mapState = ({ productsData }) => ({
-  products: productsData.products
+const mapState = ({ postsData }) => ({
+  posts: postsData.posts
 });
 
 const Admin = props => {
-  const { products } = useSelector(mapState);
+  const { posts } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [productCategory, setProductCategory] = useState('mens');
-  const [productName, setProductName] = useState('');
-  const [productThumbnail, setProductThumbnail] = useState('');
-  const [productPrice, setProductPrice] = useState(0);
-  const [productDesc, setProductDesc] = useState('');
+  const [postCategory, setPostCategory] = useState('general');
+  const [postName, setPostName] = useState('');
+  const [postThumbnail, setPostThumbnail] = useState('');
+  const [postPrice, setPostPrice] = useState(0);
+  const [postDesc, setPostDesc] = useState('');
 
-  const { data, queryDoc, isLastPage } = products;
+  const { data, queryDoc, isLastPage } = posts;
 
   useEffect(() => {
     dispatch(
-      fetchProductsStart()
+      fetchPostsStart()
     );
   }, []);
 
@@ -40,23 +40,23 @@ const Admin = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setProductCategory('mens');
-    setProductName('');
-    setProductThumbnail('');
-    setProductPrice(0);
-    setProductDesc('');
+    setPostCategory('general');
+    setPostName('');
+    setPostThumbnail('');
+    setPostPrice(0);
+    setPostDesc('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(
-      addProductStart({
-        productCategory,
-        productName,
-        productThumbnail,
-        productPrice,
-        productDesc,
+      addPostStart({
+        postCategory,
+        postName,
+        postThumbnail,
+        postPrice,
+        postDesc,
       })
     );
     resetForm();
@@ -65,9 +65,9 @@ const Admin = props => {
 
   const handleLoadMore = () => {
     dispatch(
-      fetchProductsStart({
+      fetchPostsStart({
         startAfterDoc: queryDoc,
-        persistProducts: data
+        persistPosts: data
       })
     );
   };
@@ -83,44 +83,44 @@ const Admin = props => {
         <ul>
           <li>
             <Button onClick={() => toggleModal()}>
-              Add new product
+              Add new post
             </Button>
           </li>
         </ul>
       </div>
 
       <Modal {...configModal}>
-        <div className="addNewProductForm">
+        <div className="addNewPostForm">
           <form onSubmit={handleSubmit}>
 
             <h2>
-              Add new product
+              Add new post
             </h2>
 
             <FormSelect
               label="Category"
               options={[{
-                value: "mens",
-                name: "Mens"
+                value: "general",
+                name: "General"
               }, {
-                value: "womens",
-                name: "Womens"
+                value: "announcement",
+                name: "Announcement"
               }]}
-              handleChange={e => setProductCategory(e.target.value)}
+              handleChange={e => setPostCategory(e.target.value)}
             />
 
             <FormInput
               label="Name"
               type="text"
-              value={productName}
-              handleChange={e => setProductName(e.target.value)}
+              value={postName}
+              handleChange={e => setPostName(e.target.value)}
             />
 
             <FormInput
               label="Main image URL"
               type="url"
-              value={productThumbnail}
-              handleChange={e => setProductThumbnail(e.target.value)}
+              value={postThumbnail}
+              handleChange={e => setPostThumbnail(e.target.value)}
             />
 
             <FormInput
@@ -129,32 +129,32 @@ const Admin = props => {
               min="0.00"
               max="10000.00"
               step="0.01"
-              value={productPrice}
-              handleChange={e => setProductPrice(e.target.value)}
+              value={postPrice}
+              handleChange={e => setPostPrice(e.target.value)}
             />
 
             <CKEditor
-              onChange={evt => setProductDesc(evt.editor.getData())}
+              onChange={evt => setPostDesc(evt.editor.getData())}
             />
 
             <br />
 
             <Button type="submit">
-              Add product
+              Add post
             </Button>
 
           </form>
         </div>
       </Modal>
 
-      <div className="manageProducts">
+      <div className="managePosts">
 
         <table border="0" cellPadding="0" cellSpacing="0">
           <tbody>
           <tr>
             <th>
               <h1>
-                Manage Products
+                Manage Posts
               </h1>
             </th>
           </tr>
@@ -162,27 +162,33 @@ const Admin = props => {
             <td>
               <table className="results" border="0" cellPadding="10" cellSpacing="0">
                 <tbody>
-                {(Array.isArray(data) && data.length > 0) && data.map((product, index) => {
+                {(Array.isArray(data) && data.length > 0) && data.map((post, index) => {
                   const {
-                    productName,
-                    productThumbnail,
-                    productPrice,
+                    postName,
+                    postThumbnail,
+                    postPrice,
+                    postDesc,
                     documentID
-                  } = product;
+                  } = post;
 
                   return (
                     <tr key={index}>
                       <td>
-                        <img className="thumb" src={productThumbnail} />
+                        <img className="thumb" src={postThumbnail} />
                       </td>
                       <td>
-                        {productName}
+                        {postName}
                       </td>
                       <td>
-                        £{productPrice}
+                        ${postPrice}
                       </td>
+                      <tr>
+                        <td>
+                          {postDesc}
+                        </td>
+                      </tr>
                       <td>
-                        <Button onClick={() => dispatch(deleteProductStart(documentID))}>
+                        <Button className='delete' onClick={() => dispatch(deletePostStart(documentID))}>
                           Delete
                         </Button>
                       </td>
@@ -193,11 +199,7 @@ const Admin = props => {
               </table>
             </td>
           </tr>
-          <tr>
-            <td>
 
-            </td>
-          </tr>
           <tr>
             <td>
               <table border="0" cellPadding="10" cellSpacing="0">
