@@ -19,13 +19,12 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 // pages
 import Homepage from './pages/Homepage';
-// import Search from './pages/Search';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
-// import PostDetails from './pages/PostDetails';
+import PostDetails from './pages/PostDetails';
 // import Cart from './pages/Cart';
 // import Payment from './pages/Payment';
 // import Order from './pages/Order';
@@ -70,6 +69,11 @@ const App = props => {
         <Route path="/search/:filterType" render={() => (
           <MainLayout>
             <Search />
+          </MainLayout>
+        )} />
+        <Route path="/post/:postID" render={() => (
+          <MainLayout>
+            <PostDetails />
           </MainLayout>
         )} />
         <Route path="/registration" render={() => (

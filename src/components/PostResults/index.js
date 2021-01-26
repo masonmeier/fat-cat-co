@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchPostsStart } from '../../redux/Posts/posts.actions';
+import { fetchPostsStart } from './../../redux/Posts/posts.actions';
 import Post from './Post';
 import FormSelect from './../forms/FormSelect';
 import LoadMore from './../LoadMore';
@@ -50,7 +50,7 @@ const PostResults = ({ }) => {
       name: 'General',
       value: 'general'
     }, {
-      name: 'Announcement',
+      name: 'Announcements',
       value: 'announcement'
     }],
     handleChange: handleFilter
@@ -90,7 +90,7 @@ const PostResults = ({ }) => {
           };
 
           return (
-            <Post key={pos} {...configPost} />
+            <Post {...configPost} />
           );
         })}
       </div>

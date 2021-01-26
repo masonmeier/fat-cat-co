@@ -1,5 +1,5 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from '../../firebase/utils';
+import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from '../..//firebase/utils';
 import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } from './user.actions';
 import { handleResetPasswordAPI } from './user.helpers';
@@ -8,7 +8,6 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
     const userRef = yield call(handleUserProfile, { userAuth: user, additionalData });
     const snapshot = yield userRef.get();
-    console.log(snapshot.data, 'snapshot console log');
     yield put(
       signInSuccess({
         id: snapshot.id,
@@ -71,23 +70,25 @@ export function* signUpUser({ payload: {
   email,
   password,
   confirmPassword
-}}) {
+} }) {
+
   if (password !== confirmPassword) {
-    const err = ['Passwords don\'t match'];
+    const err = ['Password Don\'t match'];
     yield put(
       userError(err)
-    )
+    );
     return;
   }
+
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName };
-
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {
     console.log(err);
   }
+
 }
 
 export function* onSignUpUserStart() {
@@ -123,7 +124,6 @@ export function* googleSignIn() {
 }
 
 export function* onGoogleSignInStart() {
-  console.log('dispatch test')
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
 }
 

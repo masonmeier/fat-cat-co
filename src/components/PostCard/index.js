@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostStart, setPost } from '../../redux/Posts/posts.actions';
-// import { addPost } from './../../redux/Cart/cart.actions';
-// import Button from './../forms/Button';
+import { fetchPostStart, setPost } from './../../redux/Posts/posts.actions';
+import Button from './../forms/Button';
 import './styles.scss';
 
 const mapState = state => ({
@@ -12,7 +11,6 @@ const mapState = state => ({
 
 const PostCard = ({}) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { postID } = useParams();
   const { post } = useSelector(mapState);
 
@@ -36,17 +34,9 @@ const PostCard = ({}) => {
 
   }, []);
 
-  // const handleAddToCart = (post) => {
-  //   if (!post) return;
-  //   dispatch(
-  //     addPost(post)
-  //   );
-  //   history.push('/cart');
-  // }
-  //
-  // const configAddToCartBtn = {
-  //   type: 'button'
-  // }
+  const configAddToCartBtn = {
+    type: 'button'
+  }
 
   return (
     <div className="postCard">
@@ -65,13 +55,13 @@ const PostCard = ({}) => {
               £{postPrice}
             </span>
           </li>
-          {/*<li>*/}
-          {/*  <div className="addToCart">*/}
-          {/*    <Button {...configAddToCartBtn} onClick={() => handleAddToCart(post)}>*/}
-          {/*      Add to cart*/}
-          {/*    </Button>*/}
-          {/*  </div>*/}
-          {/*</li>*/}
+          <li>
+            <div className="addToCart">
+              <Button {...configAddToCartBtn}>
+                Add to cart
+              </Button>
+            </div>
+          </li>
           <li>
             <span
               className="desc"

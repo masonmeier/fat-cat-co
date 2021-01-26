@@ -1,5 +1,5 @@
 import React from 'react';
-import PostResults from './../../components/PostResults';
+import PostResults from '../..//components/PostResults';
 
 const Search = ({ }) => {
   return (

@@ -1,32 +1,19 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-// import Button from './../../forms/Button';
-// import { useDispatch } from 'react-redux';
-// import { addPost } from './../../../redux/Cart/cart.actions';
+import { Link } from 'react-router-dom';
+import Button from './../../forms/Button';
 
-const Post = (post) => {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-  const {
-    documentID,
-    postThumbnail,
-    postName,
-    postPrice
-  } = post;
+const Post = ({
+                   documentID,
+                   postThumbnail,
+                   postName,
+                   postPrice
+                 }) => {
   if (!documentID || !postThumbnail || !postName ||
     typeof postPrice === 'undefined') return null;
 
-  // const configAddToCartBtn = {
-  //   type: 'button'
-  // };
-  //
-  // const handleAddToCart = (post) => {
-  //   if (!post) return;
-  //   dispatch(
-  //     addPost(post)
-  //   );
-  //   history.push('/cart');
-  // };
+  const configAddToCartBtn = {
+    type: 'button'
+  };
 
   return (
     <div className="post">
@@ -50,13 +37,13 @@ const Post = (post) => {
               £{postPrice}
             </span>
           </li>
-          {/*<li>*/}
-          {/*  <div className="addToCart">*/}
-          {/*    <Button {...configAddToCartBtn} onClick={() => handleAddToCart(post)}>*/}
-          {/*      Add to cart*/}
-          {/*    </Button>*/}
-          {/*  </div>*/}
-          {/*</li>*/}
+          <li>
+            <div className="addToCart">
+              <Button {...configAddToCartBtn}>
+                Add to cart
+              </Button>
+            </div>
+          </li>
         </ul>
       </div>
 

@@ -76,10 +76,9 @@ export const handleFetchPost = (postID) => {
       .then(snapshot => {
 
         if (snapshot.exists) {
-          resolve({
-            ...snapshot.data(),
-            documentID: postID
-          });
+          resolve(
+            snapshot.data()
+          );
         }
       })
       .catch(err => {

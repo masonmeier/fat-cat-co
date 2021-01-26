@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPostStart, fetchPostsStart, deletePostStart } from '../../redux/Posts/posts.actions';
+import { addPostStart, fetchPostsStart, deletePostStart } from './../../redux/Posts/posts.actions';
 import Modal from './../../components/Modal';
 import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
@@ -17,7 +17,7 @@ const Admin = props => {
   const { posts } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [postCategory, setPostCategory] = useState('general');
+  const [postCategory, setPostCategory] = useState('mens');
   const [postName, setPostName] = useState('');
   const [postThumbnail, setPostThumbnail] = useState('');
   const [postPrice, setPostPrice] = useState(0);
@@ -40,7 +40,7 @@ const Admin = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setPostCategory('general');
+    setPostCategory('mens');
     setPostName('');
     setPostThumbnail('');
     setPostPrice(0);
@@ -100,11 +100,11 @@ const Admin = props => {
             <FormSelect
               label="Category"
               options={[{
-                value: "general",
-                name: "General"
+                value: "mens",
+                name: "Mens"
               }, {
-                value: "announcement",
-                name: "Announcement"
+                value: "womens",
+                name: "Womens"
               }]}
               handleChange={e => setPostCategory(e.target.value)}
             />
@@ -167,7 +167,6 @@ const Admin = props => {
                     postName,
                     postThumbnail,
                     postPrice,
-                    postDesc,
                     documentID
                   } = post;
 
@@ -180,15 +179,10 @@ const Admin = props => {
                         {postName}
                       </td>
                       <td>
-                        ${postPrice}
+                        £{postPrice}
                       </td>
-                      <tr>
-                        <td>
-                          {postDesc}
-                        </td>
-                      </tr>
                       <td>
-                        <Button className='delete' onClick={() => dispatch(deletePostStart(documentID))}>
+                        <Button onClick={() => dispatch(deletePostStart(documentID))}>
                           Delete
                         </Button>
                       </td>
@@ -199,7 +193,11 @@ const Admin = props => {
               </table>
             </td>
           </tr>
+          <tr>
+            <td>
 
+            </td>
+          </tr>
           <tr>
             <td>
               <table border="0" cellPadding="10" cellSpacing="0">

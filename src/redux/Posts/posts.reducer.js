@@ -1,5 +1,5 @@
-import postsTypes from './posts.types';
 import postTypes from './posts.types';
+import postsTypes from './posts.types';
 
 const INITIAL_STATE = {
   posts: [],

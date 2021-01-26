@@ -49,4 +49,3 @@ export const resetUserState = () => ({
 export const googleSignInStart = () => ({
   type: userTypes.GOOGLE_SIGN_IN_START
 });
-
