@@ -2,7 +2,7 @@
 
 
 .directory {
-  height: 70vh;
+  height: 100%;
   background-color: #f2f2f2;
   margin-top: 1%;
 
@@ -10,6 +10,18 @@
     display: inline-block;
     width: 100%;
     height: 100%;
+    .store-exp {
+      position: relative;
+      width: 49%;
+      height: 100%;
+      float: left;
+      background-color: #ffffff;
+      text-align: right;
+      z-index: 1;
+      animation-name: slide-in;
+      animation-duration: 2s;
+      transition: transform .5s;
+    }
 
     .item-wrapper {
       position: relative;
@@ -40,18 +52,6 @@
       transform: scale(1.02);
     }
 
-    .store-exp {
-      position: relative;
-      width: 49%;
-      height: 100%;
-      float: left;
-      background-color: #ffffff;
-      text-align: right;
-      z-index: 1;
-      animation-name: slide-in;
-      animation-duration: 2s;
-      transition: transform .5s;
-    }
 
     @keyframes slide-in {
       from {

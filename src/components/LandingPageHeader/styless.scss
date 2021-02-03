@@ -1,0 +1,26 @@
+.login-row {
+  margin-top: 20%;
+}
+
+
+.page-header {
+  animation-name: slide-in;
+  animation-duration: 2s;
+  transition: transform .5s;
+
+}
+#landing-title {
+  font-family: 'Faster One', cursive;
+}
+
+@keyframes slide-in {
+  from {
+    left: -100%;
+    opacity: 25%;
+  }
+
+  to {
+    left: 0;
+    opacity: 100%;
+  }
+}

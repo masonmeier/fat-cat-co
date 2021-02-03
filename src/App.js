@@ -13,7 +13,7 @@ import WithAdminAuth from './hoc/withAdminAuth';
 // layouts
 import MainLayout from './layouts/MainLayout';
 import HomepageLayout from './layouts/HomepageLayout';
-import Search from './pages/Search';
+import Blog from './pages/Blog';
 import AdminLayout from './layouts/AdminLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
@@ -25,14 +25,14 @@ import Recovery from './pages/Recovery';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import PostDetails from './pages/PostDetails';
-// import Cart from './pages/Cart';
-// import Payment from './pages/Payment';
-// import Order from './pages/Order';
 import './default.scss';
 
-//artist imports
+//artist specific imports
 import About from '../src/pages/About'
 import Catalog from './pages/Catalog';
+import Footer from './components/Footer';
+
+
 
 const App = props => {
   const dispatch = useDispatch();
@@ -44,69 +44,76 @@ const App = props => {
 
   return (
     <div className="App">
-      <AdminToolbar />
-      <Switch>
-        <Route exact path="/" render={() => (
-          <HomepageLayout>
-            <Homepage />
-          </HomepageLayout>
-        )} />
-        <Route path="/about" render={() => (
-           <MainLayout>
-             <About />
-           </MainLayout>
-         )}/>
-        <Route path="/catalog" render={() => (
-           <MainLayout>
-             <Catalog />
-           </MainLayout>
-         )}/>
-        <Route exact path="/search" render={() => (
-          <MainLayout>
-            <Search />
-          </MainLayout>
-        )} />
-        <Route path="/search/:filterType" render={() => (
-          <MainLayout>
-            <Search />
-          </MainLayout>
-        )} />
-        <Route path="/post/:postID" render={() => (
-          <MainLayout>
-            <PostDetails />
-          </MainLayout>
-        )} />
-        <Route path="/registration" render={() => (
-          <MainLayout>
-            <Registration />
-          </MainLayout>
-        )} />
-        <Route path="/login"
-               render={() => (
-                 <MainLayout>
-                   <Login />
-                 </MainLayout>
-               )} />
-        <Route path="/recovery" render={() => (
-          <MainLayout>
-            <Recovery />
-          </MainLayout>
-        )} />
-        <Route path="/dashboard" render={() => (
-          <WithAuth>
-            <DashboardLayout>
-              <Dashboard />
-            </DashboardLayout>
-          </WithAuth>
-        )} />
-        <Route path="/admin" render={() => (
-          <WithAdminAuth>
-            <AdminLayout>
-              <Admin />
-            </AdminLayout>
-          </WithAdminAuth>
-        )} />
-      </Switch>
+      <div className="full-height">
+        <Switch>
+          <Route exact path="/" render={() => (
+            <HomepageLayout>
+              <Homepage />
+            </HomepageLayout>
+          )} />
+          <Route path="/about" render={() => (
+             <MainLayout>
+               <About />
+             </MainLayout>
+           )}/>
+          <Route path="/catalog" render={() => (
+             <MainLayout>
+               <Catalog />
+             </MainLayout>
+           )}/>
+          <Route exact path="/blog" render={() => (
+            <WithAuth>
+              <MainLayout>
+                <Blog/>
+              </MainLayout>
+            </WithAuth>
+          )} />
+          <Route path="/blog/:filterType" render={() => (
+            <WithAuth>
+              <MainLayout>
+                <Blog />
+              </MainLayout>
+            </WithAuth>
+          )} />
+          <Route path="/post/:postID" render={() => (
+            <MainLayout>
+              <PostDetails />
+            </MainLayout>
+          )} />
+          <Route path="/registration" render={() => (
+            <MainLayout>
+              <Registration />
+            </MainLayout>
+          )} />
+          <Route path="/login"
+                 render={() => (
+                   <MainLayout>
+                     <Login />
+                   </MainLayout>
+                 )} />
+          <Route path="/recovery" render={() => (
+            <MainLayout>
+              <Recovery />
+            </MainLayout>
+          )} />
+          <Route path="/dashboard" render={() => (
+            <WithAuth>
+              <DashboardLayout>
+                <Dashboard />
+              </DashboardLayout>
+            </WithAuth>
+          )} />
+          <Route path="/admin" render={() => (
+            <WithAdminAuth>
+              <AdminLayout>
+                <Admin />
+              </AdminLayout>
+            </WithAdminAuth>
+          )} />
+        </Switch>
+        <Footer />
+        <AdminToolbar />
+      </div>
     </div>
   );
 }

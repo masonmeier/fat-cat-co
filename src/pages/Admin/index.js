@@ -100,11 +100,11 @@ const Admin = props => {
             <FormSelect
               label="Category"
               options={[{
-                value: "mens",
-                name: "Mens"
+                value: "general",
+                name: "General"
               }, {
-                value: "womens",
-                name: "Womens"
+                value: "announcement",
+                name: "Announcement"
               }]}
               handleChange={e => setPostCategory(e.target.value)}
             />
@@ -134,6 +134,12 @@ const Admin = props => {
             />
 
             <CKEditor
+              // onChange={evt => setPostDesc( () => {
+              //   //clean input for submission
+              //   const data = evt.editor.getData()
+              //   data.postDesc = data.postDesc.replace( /^<p>/ig, '').replace( /<\/p>$/ig, '');
+              //   return data
+              // })}
               onChange={evt => setPostDesc(evt.editor.getData())}
             />
 

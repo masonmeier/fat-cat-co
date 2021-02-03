@@ -1,31 +1,35 @@
-.about-page {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.white-text {
+  color: white !important;
+  margin-bottom: 2%;
+}
 
-  .page-wrap {
-    width: 80%;
-    position: relative;
-    border: 1px solid #000000;
-    margin: 3%;
-    padding: 1%;
+.fill-page {
+  width: 100% !important;
+  animation-name: slide-in !important;
+  animation-duration: 4s;
+  transition: transform .5s;
+}
+
+.main {
+  padding: 0 !important;
+}
+
+#coloured-cards {
+  text-align: center !important;
+}
+
+#center-cards {
+  display: inline-block !important;
+}
+
+@keyframes slide-in {
+  from {
+    left: -100%;
+    opacity: 0%;
   }
-}
 
-.description {
-  width: 50%;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.graphic {
-  width: 50%;
-  display: inline-block;
-}
-.about-image-wrap {
-  width: 100%;
-}
-
-.about-image {
-  width: 100%;
+  to {
+    left: 0;
+    opacity: 100%;
+  }
 }

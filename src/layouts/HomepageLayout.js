@@ -1,14 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-
 
 const HomepageLayout = props => {
   return (
-    <div className="full-height">
+    <div className="seventy-five-percent-height">
       <Header {...props} />
       {props.children}
-      <Footer />
     </div>
   );
 };

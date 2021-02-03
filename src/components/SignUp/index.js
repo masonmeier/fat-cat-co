@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { signUpUserStart } from '../../redux/User/user.actions';
+import { signUpUserStart, googleSignInStart } from '../../redux/User/user.actions';
 import './styles.scss';
 
 import AuthWrapper from '../AuthWrapper';
@@ -53,6 +53,9 @@ const SignUp = props => {
       password,
       confirmPassword
     }))
+  }
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInStart());
   }
 
     const configAuthWrapper = {
@@ -115,6 +118,13 @@ const SignUp = props => {
 
             </form>
           </div>
+        <div className="socialSignin">
+          <div className="row">
+            <Button onClick={handleGoogleSignIn}>
+              Sign up with Google
+            </Button>
+          </div>
+        </div>
       </AuthWrapper>
     );
 }

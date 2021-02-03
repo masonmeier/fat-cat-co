@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actions';
 
+
 import './styles.scss';
 
 import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
+import Header from '../Header';
+import {Card, CardTitle, Col, Container, Form, Input, Row} from 'reactstrap';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser
@@ -37,20 +40,6 @@ const SignIn = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     dispatch(emailSignInStart({email, password, response}));
-    try {
-      const response = await fetch('/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({post: {email, password}}),
-      });
-      const body = await response.text();
-      setResponse(body);
-
-    } catch (err) {
-      //console.log(err);
-    }
   }
 
   const handleGoogleSignIn = () => {

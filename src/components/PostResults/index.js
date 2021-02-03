@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchPostsStart } from './../../redux/Posts/posts.actions';
+import { fetchPostsStart } from '../../redux/Posts/posts.actions';
 import Post from './Post';
 import FormSelect from './../forms/FormSelect';
 import LoadMore from './../LoadMore';
 import './styles.scss';
+import Particles from 'react-particles-js';
 
 const mapState = ({ postsData }) => ({
   posts: postsData.posts
@@ -27,7 +28,7 @@ const PostResults = ({ }) => {
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/search/${nextFilter}`);
+    history.push(`/blog/${nextFilter}`);
   };
 
   if (!Array.isArray(data)) return null;
@@ -71,14 +72,9 @@ const PostResults = ({ }) => {
   };
 
   return (
-    <div className="posts">
-
-      <h1>
-        Browse Posts
-      </h1>
-
+    <div className="posts"
+    >
       <FormSelect {...configFilters} />
-
       <div className="postResults">
         {data.map((post, pos) => {
           const { postThumbnail, postName, postPrice } = post;
@@ -90,7 +86,52 @@ const PostResults = ({ }) => {
           };
 
           return (
-            <Post {...configPost} />
+            <div>
+                  <Particles
+                    params={{
+                      particles: {
+                        number: {
+                          value: 400,
+                          density: {
+                            enable: true,
+                            value_area: 1000
+                          }
+                        },
+                        color: {
+                          value: '#fff'
+                        },
+                        opacity: {
+                          value: 0.5,
+                          anim: {
+                            enable: true
+                          }
+                        },
+                        size: {
+                          value: 7,
+                          random: true,
+                          anim: {
+                            enable: true,
+                            speed: 3
+                          }
+                        },
+                        line_linked: {
+                          enable: false
+                        },
+                        move: {
+                          speed: 0.2
+                        }
+                      }
+                    }}
+                    style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      left: '0',
+                      // top: '0',
+                  }} />
+                  <Post {...configPost} />
+
+            </div>
           );
         })}
       </div>

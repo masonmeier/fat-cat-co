@@ -9,6 +9,19 @@
   }
 }
 
+.blog-link {
+  display: block;
+  position: relative;
+  width: 90%;
+  padding: 2%;
+  margin: 2% auto;
+  text-align: center;
+  border: 1px solid #9e9e9e;
+  text-transform: uppercase;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
 .soundcloud-wrap {
   width: 30%;
   display: inline-block;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.scss';
 import Button from '../../components/forms/Button';
+import {Link} from 'react-router-dom';
 
 const Catalog = props => {
   return (
@@ -20,9 +21,9 @@ const Catalog = props => {
         <p>
           Sign up to see Romans story and interact with him directly by commenting on his posts and exclusive music releases!
         </p>
-        <Button>
-          Join Blog
-        </Button>
+        <Link className='blog-link' to="/blog">
+          Blog
+        </Link>
       </div>
       <div className="band-camp-wrap">
         <h1>

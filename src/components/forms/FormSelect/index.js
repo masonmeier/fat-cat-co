@@ -1,8 +1,9 @@
 import React from 'react';
-import './styles.scss';
+
+import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const FormSelect = ({ options, defaultValue, handleChange, label, ...otherProps }) => {
-  if (!Array.isArray(options) || options.length < 1) return null;
 
   return (
     <div className="formRow">
