@@ -31,6 +31,7 @@ import './default.scss';
 import About from '../src/pages/About'
 import Catalog from './pages/Catalog';
 import Footer from './components/Footer';
+import Contact from './pages/Contact';
 
 
 
@@ -109,6 +110,11 @@ const App = props => {
                 <Admin />
               </AdminLayout>
             </WithAdminAuth>
+          )} />
+          <Route path="/contact" render={() => (
+            <MainLayout>
+              <Contact />
+            </MainLayout>
           )} />
         </Switch>
         <Footer />

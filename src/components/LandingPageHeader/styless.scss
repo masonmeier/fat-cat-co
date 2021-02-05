@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Antro_Vectra_Bolder';
+  src: local('Antro_Vectra_Bolder'), url('../../fonts/Antro_Vectra_Bolder.otf');
+}
+
 .login-row {
   margin-top: 20%;
 }
@@ -10,8 +15,11 @@
 
 }
 #landing-title {
-  font-family: 'Faster One', cursive;
+  font-size: 5rem;
+  font-family: Antro_Vectra_Bolder, serif;
 }
+
+
 
 @keyframes slide-in {
   from {

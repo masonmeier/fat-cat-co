@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.scss';
-import Logo1 from '../../assets/images/directory/roman-logo.png';
+import Logo1 from '../../assets/images/directory/roman-logo.jpg';
 import Logo2 from '../../assets/images/directory/roman-logo2.png';
 
 

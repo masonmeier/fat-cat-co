@@ -1,3 +1,47 @@
+@font-face {
+  font-family: 'Antro_Vectra_Bolder';
+  src: local('Antro_Vectra_Bolder'), url('../../fonts/Antro_Vectra_Bolder.otf');
+}
+
 .form-wrap {
   margin: 2% auto;
+}
+
+.sign-up {
+  margin-top: 10%;
+}
+
+#signup-title {
+  color: white;
+}
+
+.btn-just-icon {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.or {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.log-in {
+  margin-top: 5%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.info-header {
+  //font-family: 'Antro_Vectra_Bolder', serif;
+  font-size: 2rem;
+
+}
+
+.login-info {
+  background-color: #00000088;
+  color: white;
+}
+
+#login-link {
+  color: dodgerblue;
 }

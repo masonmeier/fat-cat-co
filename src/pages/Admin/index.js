@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPostStart, fetchPostsStart, deletePostStart } from './../../redux/Posts/posts.actions';
+import { addPostStart, fetchPostsStart, deletePostStart } from '../../redux/Posts/posts.actions';
 import Modal from './../../components/Modal';
 import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
@@ -40,7 +40,7 @@ const Admin = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setPostCategory('mens');
+    setPostCategory('general');
     setPostName('');
     setPostThumbnail('');
     setPostPrice(0);
@@ -49,7 +49,6 @@ const Admin = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     dispatch(
       addPostStart({
         postCategory,
@@ -60,7 +59,6 @@ const Admin = props => {
       })
     );
     resetForm();
-
   };
 
   const handleLoadMore = () => {

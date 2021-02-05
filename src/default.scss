@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Antro_Vectra';
+  src: local('Antro_Vectra'), url('/fonts/Antro_Vectra.otf');
+}
+
 html {
   font-size: 10px;
 }
@@ -44,4 +49,8 @@ a, a:hover {
   //max-width: 1450px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+.antro_vectra {
+  font-family: Antro_Vectra, serif;
 }

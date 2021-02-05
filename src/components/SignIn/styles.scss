@@ -1,14 +1,35 @@
-//.socialSignIn {
-//  margin: 1.5rem auto;
-//}
-//
-//.links {
-//  display: block;
-//  width: 100%;
-//  margin: 1.5rem auto 0;
-//  text-align: center;
-//
-//  a {
-//    color: black;
-//  }
-//}
+@font-face {
+  font-family: 'Antro_Vectra_Bolder';
+  src: local('Antro_Vectra_Bolder'), url('../../fonts/Antro_Vectra_Bolder.otf');
+}
+.card-title {
+  //font-family: 'Antro_Vectra_Bolder', serif;
+  font-size: 2.5rem;
+}
+
+#login-title {
+  color: white;
+}
+
+.btn {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btn-link {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-container {
+  margin-top: 10%;
+}
+
+.card-register {
+  background-color: #00000088;
+}
+
+#btn-link {
+  margin-top: 3%;
+  color: white;
+}

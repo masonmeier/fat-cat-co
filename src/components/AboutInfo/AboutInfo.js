@@ -28,7 +28,7 @@ function AboutInfo() {
         >
           <div className="content-center">
             <Container>
-              <h1>
+              <h1 className="diskoteque">
                 FUNK IS THE GAME
               </h1>
                 <p className="white-text">

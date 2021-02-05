@@ -7,6 +7,7 @@ import FormSelect from './../forms/FormSelect';
 import LoadMore from './../LoadMore';
 import './styles.scss';
 import Particles from 'react-particles-js';
+import Background from '../../assets/images/directory/roman-logo.jpg';
 
 const mapState = ({ postsData }) => ({
   posts: postsData.posts
@@ -17,6 +18,12 @@ const PostResults = ({ }) => {
   const history = useHistory();
   const { filterType } = useParams();
   const { posts } = useSelector(mapState);
+
+  const styles = {
+    pageHeader: {
+      backgroundImage: `url(${Background})`
+    },
+  }
 
   const { data, queryDoc, isLastPage } = posts;
 
@@ -73,9 +80,13 @@ const PostResults = ({ }) => {
 
   return (
     <div className="posts"
-    >
+         style={styles.pageHeader}>
       <FormSelect {...configFilters} />
-      <div className="postResults">
+      <div className="row">
+      <h1 className="diskoteque">Blog</h1>
+      </div>
+      <div className="postResults"
+      >
         {data.map((post, pos) => {
           const { postThumbnail, postName, postPrice } = post;
           if (!postThumbnail || !postName ||
@@ -120,6 +131,15 @@ const PostResults = ({ }) => {
                         move: {
                           speed: 0.2
                         }
+                    },
+                      "interactivity": {
+                        "detect_on": "window",
+                        "events": {
+                          "onhover": {
+                            "enable": true,
+                            "mode": "attract"
+                          },
+                        }
                       }
                     }}
                     style={{
@@ -130,7 +150,6 @@ const PostResults = ({ }) => {
                       // top: '0',
                   }} />
                   <Post {...configPost} />
-
             </div>
           );
         })}

@@ -1,5 +1,4 @@
 import postTypes from './posts.types';
-import postsTypes from './posts.types';
 
 const INITIAL_STATE = {
   posts: [],
@@ -13,7 +12,7 @@ const postsReducer = (state=INITIAL_STATE, action) => {
         ...state,
         posts: action.payload
       }
-    case postsTypes.SET_POST:
+    case postTypes.SET_POST:
       return {
         ...state,
         post: action.payload

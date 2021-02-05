@@ -1,6 +1,6 @@
 import React from "react";
 
-import Sacramento from '../../assets/images/directory/sacramento.jpg';
+import Sacramento from '../../assets/images/directory/sacramento.png';
 
 // reactstrap components
 import {
@@ -19,7 +19,7 @@ import './styles.scss'
 // core components
 import AboutInfo from "../../components/AboutInfo/AboutInfo";
 import FullBackgroundCard from '../../components/FullBackgroundCard';
-import AboutPageHeader from '../../AboutPageHeader';
+import AboutPageHeader from '../../components/AboutPageHeader';
 
 function About() {
     document.documentElement.classList.remove("nav-open");

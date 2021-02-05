@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -17,8 +18,6 @@ import {
 // styles
 import "../../paper-kit/assets/css/bootstrap.min.css";
 import "../../paper-kit/assets/css/paper-kit.css";
-// import "assets/css/paper-kit.min.css";
-// import "assets/css/paper-kit.css.map";
 import "../../paper-kit/assets/demo/demo.css";
 import "../../paper-kit/assets/demo/react-demo.css";
 
@@ -26,6 +25,12 @@ import "../../paper-kit/assets/demo/react-demo.css";
 import LandingPageHeader from '../LandingPageHeader';
 
 function LandingPage() {
+  const history = useHistory();
+
+  function handleClick() {
+    history.push("/contact");
+  }
+
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -43,25 +48,20 @@ function LandingPage() {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title">Let's talk gigs</h2>
+                <h2 className="title diskoteque">Let's talk production</h2>
                 <h5>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros,
-                  pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus.
-                  Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex,
-                  in pretium orci vestibulum eget. Class aptent taciti sociosqu ad litora torquent
-                  per conubia nostra, per inceptos himenaeos. Duis pharetra luctus lacus ut
-                  vestibulum. Maecenas ipsum lacus, lacinia quis posuere ut, pulvinar vitae dolor.
-                  Integer eu nibh at nisi ullamcorper sagittis id vel leo. Integer feugiat
-                  faucibus libero, at maximus nisl suscipit posuere.
+                  ROMAN has an excellent palette of samples, production tools, recording equipment and vibes
+                  for collaborating on and composing music. He has successfully collaborated with artists across
+                  multiple genres including
+                  <a href="https://soundcloud.com/rmnrmn/hometown-violence-ft-brown-x-king-quartz-x-lord-souja" target="_blank"> Hometown Violence </a>
+                  with Sacramento and Detroit artists ΒΣΞζΨ_BROWN, KING QUARTZ and Lord Souja 兵士,
+                  <a href="https://soundcloud.com/rmnrmn/spaced-out-ft-french-touch" target="_blank"> Spaced Out</a> ft French Touch,
+                  and <a href="https://soundcloud.com/lisaofficesystems" target="_blank"> Lisa Office Systems</a> with Fashionista Boyfriend.
+                   Roman is open to collaboration and production offers.
                 </h5>
                 <br />
-                <Button
-                  className="btn-fill btn-round"
-                  color="danger"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  See Details
+                <Button type='button' onClick={handleClick}>
+                  Lets Collab!
                 </Button>
               </Col>
             </Row>

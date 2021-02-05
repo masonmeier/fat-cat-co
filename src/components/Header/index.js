@@ -94,14 +94,11 @@ const Header = props => {
         id="navbar-main"
         expand="lg"
       >
-        <Container>
+        <Container id='header-container'>
           <div className="navbar-translate">
-            <NavbarBrand id="navbar-brand" to="/" tag={Link}>
-              ROMAN
-            </NavbarBrand>
-            <UncontrolledTooltip placement="bottom" target="navbar-brand">
-              ROMAN
-            </UncontrolledTooltip>
+            <Link className='title-link' to="/">
+              R O M A N
+            </Link>
             <button
               className="navbar-toggler"
               id="navigation"

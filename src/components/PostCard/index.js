@@ -6,7 +6,7 @@ import { fetchPostStart, setPost } from '../../redux/Posts/posts.actions';
 
 // reactstrap components
 import { Button } from "reactstrap";
-import Logo from '../../assets/images/directory/roman-logo.png';
+import Logo from '../../assets/images/directory/roman-logo.jpg';
 
 // core components
 
@@ -71,7 +71,7 @@ const PostCard = ({}) => {
         <div className="filter" />
         <div className="content-center">
           <div className="motto">
-            <h1 className="title-uppercase text-center">{postName}</h1>
+            <h1 className="title-uppercase text-center diskoteque">{postName}</h1>
             <h3 className="text-center">{postCategory}</h3>
             <br />
             <p>

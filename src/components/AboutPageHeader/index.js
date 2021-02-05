@@ -2,8 +2,7 @@ import React from "react";
 
 // reactstrap components
 import { Button, Container } from "reactstrap";
-import Background from '../assets/images/directory/about-roman.png';
-import AboutInfo from '../components/AboutInfo/AboutInfo';
+import Background from '../../assets/images/directory/about-roman.png';
 
 // core components
 
@@ -52,8 +51,8 @@ function AboutPageHeader() {
         <div className="content-center">
           <Container>
             <Container styles={styles.setWidth}>
-              <h1>
-                FUNK IS THE GAME
+              <h1 className="antro_vectra">
+                Funk is the game
               </h1>
               <br/>
               <p className="white-text">
@@ -65,6 +64,12 @@ function AboutPageHeader() {
                 ROMAN finds inspirations in the artists: <a href={daftPunk} target="_blank"> Daft Punk</a>,
                 <a href={fredFalke} target="_blank"> Fred Falke</a>, <a href={bob} target="_blank"> Bob Sinclaire</a>, and <a href={MOJO} target="_blank"> MOJO</a>. This inspiration has brought tracks such as
                 <a href={boogie} target="_blank"> "Let's Boogie (Get Up!)</a>, <a href={withYou} target="_blank"> When I'm With You</a>, and <a href={sailor} target="_blank"> Sailor Bae</a>.
+              </p>
+              <br/>
+              <p>
+                ROMAN is the president and founder of <a>On The Rocks</a>, a Sacramento California record label that specializes in growing and highlighting
+                local Sacramento artists and producing physical record albums. He is growing his brand by signing the sickest
+                grooves in California and hopes to open a bar / venue in downtown Sacramento.
               </p>
               {/*<FullBackgroundCard />*/}
             </Container>

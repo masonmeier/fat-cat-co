@@ -1,4 +1,4 @@
-import { auth } from './../../firebase/utils';
+import { auth } from '../../firebase/utils';
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { setPosts, setPost, fetchPostsStart } from './posts.actions';
 import { handleAddPost, handleFetchPosts,
