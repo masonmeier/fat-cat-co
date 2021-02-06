@@ -27,6 +27,10 @@ import Admin from './pages/Admin';
 import PostDetails from './pages/PostDetails';
 import './default.scss';
 
+//notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //artist specific imports
 import About from '../src/pages/About'
 import Catalog from './pages/Catalog';
@@ -46,6 +50,7 @@ const App = props => {
   return (
     <div className="App">
       <div className="full-height">
+        <ToastContainer />
         <Switch>
           <Route exact path="/" render={() => (
             <HomepageLayout>

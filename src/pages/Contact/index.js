@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import './styles.scss'
 import {Button, Col, Container, Form, Input, Row} from 'reactstrap';
 import ContactBackground from '../../assets/images/directory/sacramento.png';
 import {useDispatch} from 'react-redux';
+
+
+//toastify notification
+import { toast } from 'react-toastify';
 
 //needs to be changed to emails.actions
 import {addEmailStart} from '../../redux/Email/email.actions';
 import FormInput from '../../components/forms/FormInput';
 
 const Contact = props => {
-
+  const history = useHistory();
+  const notify = () => toast('Email Submitted Successfully!')
   const dispatch = useDispatch();
   const [contactFirstName, setContactFirstName] = useState('');
   const [contactLastName, setContactLastName] = useState('');
@@ -36,7 +42,9 @@ const Contact = props => {
         contactMessage,
       })
     );
+    notify();
     resetForm();
+    history.push('/')
   };
 
   const styles = {

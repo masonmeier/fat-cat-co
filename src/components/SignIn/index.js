@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actions';
 
-
 import './styles.scss';
 import LoginBackground from '../../assets/images/directory/sacramento.png'
 
