@@ -32,6 +32,7 @@ const Contact = props => {
   };
 
   const handleSubmit = e => {
+    console.log('handleSubmit is called')
     e.preventDefault();
     dispatch(
       addEmailStart({

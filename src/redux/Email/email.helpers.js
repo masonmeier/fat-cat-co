@@ -1,6 +1,7 @@
 import { firestore } from '../../firebase/utils';
 
 export const handleAddEmail = email => {
+  console.log('handleAddEmail is called')
   return new Promise((resolve, reject) => {
     firestore
       .collection('email')

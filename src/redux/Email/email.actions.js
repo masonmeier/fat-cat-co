@@ -1,9 +1,12 @@
 import emailTypes from './email.types';
 
-export const addEmailStart = emailData => ({
+export const addEmailStart = emailData => {
+  console.log('actions.js addEmailStart')
+  return ({
   type: emailTypes.ADD_NEW_EMAIL_START,
   payload: emailData
-});
+  })
+};
 
 export const fetchEmailsStart = (filters={}) => ({
   type: emailTypes.FETCH_EMAILS_START,
