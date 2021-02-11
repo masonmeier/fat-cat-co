@@ -3,6 +3,9 @@ import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from '../../f
 import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } from './user.actions';
 import { handleResetPasswordAPI } from './user.helpers';
+import { toast } from 'react-toastify';
+
+const notify = () => toast(`A confirmation email has been sent to your account!`)
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
@@ -27,6 +30,9 @@ export function* emailSignIn({ payload: { email, password } }) {
 
   } catch (err) {
     // console.log(err);
+    yield put(
+      userError(err)
+    )
   }
 }
 
@@ -82,9 +88,19 @@ export function* signUpUser({ payload: {
 
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
+    const additionalData = { displayName, email };
     yield getSnapshotFromUserAuth(user, additionalData);
-
+  //   fetch("http://localhost:5000/registerEmail", {
+  //       method: "post",
+  //       headers: {
+  //         'Content-type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         user
+  //       })
+  //     }
+  //   )
+  //     .then(notify)
   } catch (err) {
     console.log(err);
   }

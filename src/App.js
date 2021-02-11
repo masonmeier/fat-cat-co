@@ -35,7 +35,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import About from '../src/pages/About'
 import Catalog from './pages/Catalog';
 import Footer from './components/Footer';
-import Contact from './pages/Contact';
+import ContactPage from './pages/ContactPage';
 
 
 
@@ -118,7 +118,7 @@ const App = props => {
           )} />
           <Route path="/contact" render={() => (
             <MainLayout>
-              <Contact />
+              <ContactPage />
             </MainLayout>
           )} />
         </Switch>

@@ -17,7 +17,7 @@ const Admin = props => {
   const { posts } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [postCategory, setPostCategory] = useState('mens');
+  const [postCategory, setPostCategory] = useState('general');
   const [postName, setPostName] = useState('');
   const [postThumbnail, setPostThumbnail] = useState('');
   const [postPrice, setPostPrice] = useState(0);
@@ -49,16 +49,17 @@ const Admin = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     dispatch(
       addPostStart({
         postCategory,
         postName,
         postThumbnail,
-        postPrice,
         postDesc,
       })
     );
     resetForm();
+
   };
 
   const handleLoadMore = () => {
@@ -87,7 +88,7 @@ const Admin = props => {
         </ul>
       </div>
 
-      <Modal {...configModal}>
+      <Modal className='modal' {...configModal}>
         <div className="addNewPostForm">
           <form onSubmit={handleSubmit}>
 
@@ -108,6 +109,7 @@ const Admin = props => {
             />
 
             <FormInput
+              className="form-input"
               label="Name"
               type="text"
               value={postName}
@@ -115,20 +117,11 @@ const Admin = props => {
             />
 
             <FormInput
+              className="form-input"
               label="Main image URL"
               type="url"
               value={postThumbnail}
               handleChange={e => setPostThumbnail(e.target.value)}
-            />
-
-            <FormInput
-              label="Price"
-              type="number"
-              min="0.00"
-              max="10000.00"
-              step="0.01"
-              value={postPrice}
-              handleChange={e => setPostPrice(e.target.value)}
             />
 
             <CKEditor
@@ -170,7 +163,7 @@ const Admin = props => {
                   const {
                     postName,
                     postThumbnail,
-                    postPrice,
+                    postDesc,
                     documentID
                   } = post;
 
@@ -183,7 +176,7 @@ const Admin = props => {
                         {postName}
                       </td>
                       <td>
-                        £{postPrice}
+                        {postDesc}
                       </td>
                       <td>
                         <Button onClick={() => dispatch(deletePostStart(documentID))}>

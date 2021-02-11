@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { emailSignInStart, googleSignInStart } from '../../redux/User/user.actions';
+import {emailSignInStart, googleSignInStart, userError} from '../../redux/User/user.actions';
 
 import './styles.scss';
 import LoginBackground from '../../assets/images/directory/sacramento.png'
@@ -13,17 +13,27 @@ import Header from '../Header';
 import {Card, CardTitle, Col, Container, Form, Input, Row} from 'reactstrap';
 
 
-const mapState = ({ user }) => ({
+// const mapState = ({ user }) => ({
+//   currentUser: user.currentUser
+// });
+
+const mapUser = ({ user }) => ({
   currentUser: user.currentUser
+});
+
+const mapError = ({ user }) => ({
+  error: user.userErr
 });
 
 const SignIn = props => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser } = useSelector(mapUser);
+  const error = useSelector(mapError);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [response, setResponse] = useState('');
+
 
   useEffect(() => {
     if (currentUser) {
@@ -45,6 +55,7 @@ const SignIn = props => {
 
   const handleGoogleSignIn = () => {
     dispatch(googleSignInStart());
+
   }
 
   const styles = {
@@ -87,6 +98,11 @@ const SignIn = props => {
                         placeholder="Password"
                         handleChange={e => setPassword(e.target.value)}
                       />
+                      {/*{error !== null && (*/}
+                      {/*  <div>*/}
+                      {/*    {error}*/}
+                      {/*  </div>*/}
+                      {/*)}*/}
 
                       <div className="row">
                         <Button type='submit'>

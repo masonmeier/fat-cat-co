@@ -1,8 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBmzgYTPuWtLIxtZQIZQ5ljd5Hgs7cw6S4",
-  authDomain: "ontherocks-ea48c.firebaseapp.com",
-  projectId: "ontherocks-ea48c",
-  storageBucket: "ontherocks-ea48c.appspot.com",
-  messagingSenderId: "880627894816",
-  appId: "1:880627894816:web:aced78f6051787bfd70a45"
+  apiKey: "AIzaSyC0BmvQhb2pQ-CJj5e0By001XoLcJlNdRQ",
+  authDomain: "futurefunkroman-debf5.firebaseapp.com",
+  projectId: "futurefunkroman-debf5",
+  storageBucket: "futurefunkroman-debf5.appspot.com",
+  messagingSenderId: "15593560792",
+  appId: "1:15593560792:web:ab012dacd502c77a2355ad",
+  measurementId: "G-K74YZLSWGG"
 };

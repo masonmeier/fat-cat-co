@@ -1,8 +1,0 @@
-const emailTypes = {
-  ADD_NEW_EMAIL_START: 'ADD_NEW_EMAIL_START',
-  DELETE_EMAIL_START: 'DELETE_EMAIL_START',
-  FETCH_EMAIL_START: 'FETCH_EMAIL_START',
-  SET_EMAIL: 'SET_EMAIL',
-};
-
-export default emailTypes;

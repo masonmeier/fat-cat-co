@@ -48,7 +48,7 @@ function LandingPage() {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title diskoteque">Let's talk production</h2>
+                <h2 className="title">Let's talk production</h2>
                 <h5>
                   ROMAN has an excellent palette of samples, production tools, recording equipment and vibes
                   for collaborating on and composing music. He has successfully collaborated with artists across

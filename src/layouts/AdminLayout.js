@@ -20,11 +20,11 @@ const AdminLayout = props => {
         <div className="sidebar">
           <VerticalNav>
             <ul>
-              <li>
-                <Link to="/admin">
-                  Admin Page
-                </Link>
-              </li>
+              {/*<li>*/}
+              {/*  <Link to="/admin">*/}
+              {/*    Admin Page*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
               <li>
                 <span className="signOut" onClick={() => signOut()}>
                   Sign Out

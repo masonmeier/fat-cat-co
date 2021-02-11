@@ -4,6 +4,7 @@ import './styles.scss'
 import {Button, Col, Container, Form, Input, Row} from 'reactstrap';
 import ContactBackground from '../../assets/images/directory/sacramento.png';
 import {useDispatch} from 'react-redux';
+import axios from 'axios';
 
 
 //toastify notification
@@ -31,11 +32,35 @@ const Contact = props => {
     setContactMessage('');
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     console.log('handleSubmit is called')
     e.preventDefault();
+    // const response = await fetch("/contactmail", {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     contactMessage,
+    //     contactSubject,
+    //     contactEmail,
+    //     contactFirstName,
+    //     contactLastName
+    //   })
+    // });
+    // const resData = await response.json();
+    // if (resData.status === 'success'){
+    //   alert("Message Sent.");
+    // }else if(resData.status === 'fail'){
+    //   alert("Message failed to send.")
+    // }
     dispatch(
       addEmailStart({
+        to: 'ontherocksroman@gmail.com',
+        message: {
+          subject: contactSubject,
+          html: contactMessage,
+        },
         contactFirstName,
         contactLastName,
         contactEmail,
@@ -77,30 +102,30 @@ const Contact = props => {
                 <Row>
                   <Col md="6">
                     <FormInput className='contact-input' placeholder="First Name" type="text"
-                           value={contactFirstName}
-                           handleChange={e => setContactFirstName(e.target.value)}/>
+                               value={contactFirstName}
+                               handleChange={e => setContactFirstName(e.target.value)}/>
                   </Col>
                   <Col md="6">
                     <FormInput className='contact-input' placeholder="Last Name" type="text"
-                           value={contactLastName}
-                           handleChange={e => setContactLastName(e.target.value)}/>
+                               value={contactLastName}
+                               handleChange={e => setContactLastName(e.target.value)}/>
                   </Col>
                 </Row>
                 <Row>
                   <Col md="6">
                     <FormInput className='contact-input' placeholder="Email" type="text"
-                           value={contactEmail}
-                           handleChange={e => setContactEmail(e.target.value)}/>
+                               value={contactEmail}
+                               handleChange={e => setContactEmail(e.target.value)}/>
                   </Col>
                   <Col md="6">
                     <FormInput className='contact-input' placeholder="Subject" type="text"
-                           value={contactSubject}
-                           handleChange={e => setContactSubject(e.target.value)}/>
+                               value={contactSubject}
+                               handleChange={e => setContactSubject(e.target.value)}/>
                   </Col>
                 </Row>
                 <FormInput className='contact-input' placeholder="Message" rows="7" type="textarea"
-                       value={contactMessage}
-                       handleChange={e => setContactMessage(e.target.value)}/>
+                           value={contactMessage}
+                           handleChange={e => setContactMessage(e.target.value)}/>
                 <Row>
                   <Col className="ml-auto mr-auto" md="6">
                     <Button block type="submit" className="btn-round" color="danger">
