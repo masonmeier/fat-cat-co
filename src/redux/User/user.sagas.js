@@ -5,7 +5,7 @@ import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } fr
 import { handleResetPasswordAPI } from './user.helpers';
 import { toast } from 'react-toastify';
 
-const notify = () => toast(`A confirmation email has been sent to your account!`)
+// const notifyError = (err) => toast(err)
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
@@ -27,9 +27,8 @@ export function* emailSignIn({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
-
   } catch (err) {
-    // console.log(err);
+    console.log('error check in emailSignIn;', err);
     yield put(
       userError(err)
     )
@@ -102,7 +101,9 @@ export function* signUpUser({ payload: {
   //   )
   //     .then(notify)
   } catch (err) {
-    console.log(err);
+    yield put(
+      userError(err)
+    )
   }
 
 }

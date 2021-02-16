@@ -1,4 +1,6 @@
 import { firestore } from '../../firebase/utils';
+import CKEditor from 'ckeditor4-react';
+import React from 'react';
 
 export const handleAddPost = post => {
   return new Promise((resolve, reject) => {
@@ -14,6 +16,13 @@ export const handleAddPost = post => {
       })
   });
 }
+
+// onChange={evt => setPostDesc( () => {
+//   //clean input for submission
+//   const data = evt.editor.getData()
+//   data.postDesc = data.postDesc.replace( /^<p>/ig, '').replace( /<\/p>$/ig, '');
+//   return data
+// })}
 
 export const handleFetchPosts = ({ filterType, startAfterDoc, persistPosts=[] }) => {
   return new Promise((resolve, reject) => {

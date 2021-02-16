@@ -44,11 +44,11 @@ const Post = (post) => {
     documentID,
     postThumbnail,
     postName,
-    postDesc,
+    cleanedPostDesc,
     postCategory
   } = post;
   if (!documentID || !postThumbnail || !postName ||
-    typeof postDesc === 'undefined') return null;
+    typeof cleanedPostDesc === 'undefined') return null;
 
   return (
     <>
@@ -82,7 +82,7 @@ const Post = (post) => {
                         </Link>
                         <div className="card-description">
 
-                            {postDesc}
+                            {cleanedPostDesc}
 
                         </div>
                       </CardBody>

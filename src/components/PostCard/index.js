@@ -25,8 +25,7 @@ const PostCard = ({}) => {
     postThumbnail,
     postName,
     postCategory,
-    postPrice,
-    postDesc,
+    cleanedPostDesc,
   } = post;
 
   useEffect(() => {
@@ -75,7 +74,7 @@ const PostCard = ({}) => {
             <h3 className="text-center">{postCategory}</h3>
             <br />
             <p>
-              {postDesc}
+              {cleanedPostDesc}
             </p>
             <br />
             <br />

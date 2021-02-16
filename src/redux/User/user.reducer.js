@@ -22,7 +22,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case userTypes.USER_ERROR:
       return {
         ...state,
-        userErr: action.payload
+        userErr: action.payload,
       }
     case userTypes.RESET_USER_STATE:
     case userTypes.SIGN_OUT_USER_SUCCESS:

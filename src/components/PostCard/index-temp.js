@@ -19,7 +19,7 @@ const PostCard = ({}) => {
     postThumbnail,
     postName,
     postPrice,
-    postDesc,
+    cleanedPostDesc,
   } = post;
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const PostCard = ({}) => {
           <li>
             <span
               className="desc"
-              dangerouslySetInnerHTML={{ __html: postDesc }} />
+              dangerouslySetInnerHTML={{ __html: cleanedPostDesc }} />
           </li>
         </ul>
       </div>

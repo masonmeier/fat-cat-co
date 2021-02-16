@@ -88,9 +88,9 @@ const PostResults = ({ }) => {
       <div className="postResults"
       >
         {data.map((post, pos) => {
-          const { postThumbnail, postName, postPrice } = post;
+          const { postThumbnail, postName, cleanedPostDesc } = post;
           if (!postThumbnail || !postName ||
-            typeof postPrice === 'undefined') return null;
+            typeof cleanedPostDesc === 'undefined') return null;
 
           const configPost = {
             ...post

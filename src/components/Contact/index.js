@@ -21,9 +21,10 @@ const Contact = props => {
   const [contactSubject, setContactSubject] = useState('');
   const [contactMessage, setContactMessage] = useState('');
   const [apiResponse, setApiResponse] = useState('');
-  const notify = () => toast(`email has submitted successfully`)
-  const notifyStart = () => toast('Email Submit In Progress')
-  const notifyError = (err) => toast(`Email Submission Failed! ${err}`)
+  const notifyStart = () => toast('Submitting!');
+  const notifyFail = () => toast('Email did not send. Please fix your inputs and try again.');
+  const notifySuccess = () => toast('Email Sent!');
+
 
   const resetForm = () => {
     setContactFirstName('');
@@ -54,16 +55,15 @@ const Contact = props => {
       body: JSON.stringify(emailData)
       }
     )
-      .then(res => res.text())
-      .then(res => ({
-        apiResponse: res
-      }))
-      .then(resetForm)
-      .then(history.push('/'))
-      .catch((err =>
-          notifyError(err))
-      )
-    notify(apiResponse)
+      .then (res => {
+        if (res.status !== 200) {
+          notifyFail();
+        } else {
+          notifySuccess();
+          resetForm();
+          history.push('/')
+        }
+      })
   }
 
   const styles = {

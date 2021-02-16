@@ -20,7 +20,6 @@ const Admin = props => {
   const [postCategory, setPostCategory] = useState('general');
   const [postName, setPostName] = useState('');
   const [postThumbnail, setPostThumbnail] = useState('');
-  const [postPrice, setPostPrice] = useState(0);
   const [postDesc, setPostDesc] = useState('');
 
   const { data, queryDoc, isLastPage } = posts;
@@ -43,19 +42,18 @@ const Admin = props => {
     setPostCategory('general');
     setPostName('');
     setPostThumbnail('');
-    setPostPrice(0);
     setPostDesc('');
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    const cleanedPostDesc = postDesc.replace( /<\/?p[^>]*>/g, '');
     dispatch(
       addPostStart({
         postCategory,
         postName,
         postThumbnail,
-        postDesc,
+        cleanedPostDesc,
       })
     );
     resetForm();
@@ -125,12 +123,6 @@ const Admin = props => {
             />
 
             <CKEditor
-              // onChange={evt => setPostDesc( () => {
-              //   //clean input for submission
-              //   const data = evt.editor.getData()
-              //   data.postDesc = data.postDesc.replace( /^<p>/ig, '').replace( /<\/p>$/ig, '');
-              //   return data
-              // })}
               onChange={evt => setPostDesc(evt.editor.getData())}
             />
 
@@ -163,7 +155,7 @@ const Admin = props => {
                   const {
                     postName,
                     postThumbnail,
-                    postDesc,
+                    cleanedPostDesc,
                     documentID
                   } = post;
 
@@ -176,7 +168,7 @@ const Admin = props => {
                         {postName}
                       </td>
                       <td>
-                        {postDesc}
+                        {cleanedPostDesc}
                       </td>
                       <td>
                         <Button onClick={() => dispatch(deletePostStart(documentID))}>

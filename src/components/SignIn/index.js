@@ -9,38 +9,34 @@ import LoginBackground from '../../assets/images/directory/sacramento.png'
 import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
-import Header from '../Header';
+// import Header from '../Header';
 import {Card, CardTitle, Col, Container, Form, Input, Row} from 'reactstrap';
+import { toast } from 'react-toastify';
 
-
-// const mapState = ({ user }) => ({
-//   currentUser: user.currentUser
-// });
-
-const mapUser = ({ user }) => ({
-  currentUser: user.currentUser
-});
-
-const mapError = ({ user }) => ({
-  error: user.userErr
-});
+const mapState = ({ user }) => user;
 
 const SignIn = props => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(mapUser);
-  const error = useSelector(mapError);
+  const currentUser  = useSelector(mapState).currentUser;
+  const error = useSelector(mapState).userErr.message;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [response, setResponse] = useState('');
-
+  const notifyError = () => toast(error)
+  const notifyWelcome = () => toast('Welcome Back!')
 
   useEffect(() => {
     if (currentUser) {
       resetForm();
+      notifyWelcome();
       history.push('/');
     }
-  }, [currentUser]);
+    if (error !== undefined) {
+      notifyError(error);
+    }
+  }, [currentUser, error]);
+
 
   const resetForm = () => {
     setEmail('');
@@ -67,7 +63,7 @@ const SignIn = props => {
     // const configAuthWrapper = {
     //   headline: 'LogIn'
     // }
-
+  console.info('"',error, '"error object test on sign in')
     return (
         <div className="wrapper">
           <div
@@ -98,11 +94,6 @@ const SignIn = props => {
                         placeholder="Password"
                         handleChange={e => setPassword(e.target.value)}
                       />
-                      {/*{error !== null && (*/}
-                      {/*  <div>*/}
-                      {/*    {error}*/}
-                      {/*  </div>*/}
-                      {/*)}*/}
 
                       <div className="row">
                         <Button type='submit'>
@@ -111,6 +102,7 @@ const SignIn = props => {
                       </div>
 
                     </form>
+
 
                       <div className="socialSignIn">
                         <div className="row">

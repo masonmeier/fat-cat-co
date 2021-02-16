@@ -9,53 +9,72 @@ import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 import {Card, CardTitle, Col, Container, Form, Input, Row} from 'reactstrap';
+import { toast } from 'react-toastify';
+import Switch from 'react-bootstrap-switch';
 
-const mapState = ({ user }) => ({
-  currentUser: user.currentUser,
-  userErr: user.userErr,
-})
+const mapState = ({ user }) => user;
+
+
 
 const SignUp = props => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser, userErr } = useSelector(mapState)
+  const currentUser  = useSelector(mapState).currentUser;
+  const error = useSelector(mapState).userErr.message;
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const [switchOn, setSwitch] = useState(false)
+
+  const notifyError = () => toast(error)
+  const notifyRegister = () => toast('Hey There, thanks for signing up! Stay tuned for some cool stuff!');
 
   useEffect(() => {
     if (currentUser) {
       reset();
-      history.push('/')
+      notifyRegister()
+      history.push('/');
     }
-  }, [currentUser]);
-
-  useEffect(() => {
-    if (Array.isArray(userErr) && userErr.length > 0) {
-      setErrors(userErr);
+    if (error !== null) {
+      console.log(error, 'error check')
+      notifyError(error);
+      reset()
     }
-  }, [userErr]);
+  }, [currentUser, error])
 
   const reset = () => {
     setDisplayName('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-    setErrors([]);
   }
 
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signUpUserStart({
+    const emailData = {
       displayName,
       email,
-      password,
-      confirmPassword
-    }))
+    }
+    await fetch("http://localhost:5000/registerEmail", {
+        method: "post",
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+      }
+    )
+      .then (
+        dispatch(signUpUserStart({
+        displayName,
+        email,
+        password,
+        confirmPassword
+      })))
   }
+
+
   const styles = {
     pageHeader: {
       backgroundImage: `url(${LoginBackground})`
@@ -65,11 +84,13 @@ const SignUp = props => {
     dispatch(googleSignInStart());
   }
 
-    const configAuthWrapper = {
-      headline: 'Sign Up'
-    }
-
-
+  const handleSwitch = (elem, state) => {
+    console.log('handleSwitch. elem:', elem);
+    console.log('name:', elem.props.name);
+    console.log('new state:', state);
+    setSwitch(state)
+    console.log(switchOn, 'switch on check')
+  }
 
 
     return (
@@ -95,7 +116,7 @@ const SignUp = props => {
                   <div className="description">
                     <h3 className="info-header">Catch Roman's Releases</h3>
                     <p>
-                      Register to be the first to recieve announcements on music releases
+                      Register to be the first to receive announcements on music releases
                       and projects.
                     </p>
                   </div>
@@ -111,17 +132,6 @@ const SignUp = props => {
                   </div>
                 </div>
               </Col>
-              {errors.length > 0 && (
-                <ul>
-                  {errors.map((err, index) => {
-                    return (
-                      <li key={index}>
-                        {err}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
 
               <Col className="mr-auto" lg="6" md="6" sm="5" xs="12">
                 <Card className="card-register">
@@ -129,7 +139,9 @@ const SignUp = props => {
                     Register
                   </CardTitle>
                   <div className="row">
-                    <Button onClick={handleGoogleSignIn} className="btn" color="google">
+                    <Button
+                      disabled={!switchOn}
+                      onClick={handleGoogleSignIn} className="btn" color="google">
                       Register with Google
                     </Button>
                   </div>
@@ -178,9 +190,26 @@ const SignUp = props => {
                     />
 
                     <div className="row">
-                      <Button type='submit'>
+                      <Button
+                        type='submit'
+                        disabled={!switchOn}
+                      >
                         Register
                       </Button>
+                    </div>
+                    <div className="row switch-row">
+                      <Switch
+                        onChange={(el, state) => handleSwitch(el, state)} name='eula'
+                        className='switch'
+                        defaultValue={false}
+                        offColor="black"
+                        offText="No"
+                        onColor="danger"
+                        onText="Yes"
+                      />
+                      <a target="_blank" href="https://www.google.com/" className="switch-text">
+                        I have read and accept the End-user license agreement.
+                      </a>
                     </div>
 
                   </form>
