@@ -4,17 +4,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './styles.scss'
 
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory, useParams } from 'react-router-dom';
-// import { fetchPostsStart } from '../../../redux/Posts/posts.actions';
-// import Post from './index';
-// import FormSelect from '../../forms/FormSelect';
-// import LoadMore from '../../LoadMore';
-
 // reactstrap components
 import {
   Badge,
-  Button,
   Card,
   CardBody,
   CardTitle,
@@ -22,15 +14,9 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import Particles from 'react-particles-js';
 
-// core components
-// import DangerNavbar from "components/Navbars/DangerNavbar.js";
-// import FooterGray from "components/Footers/FooterGray.js";
 
 const Post = (post) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("blog-posts");
@@ -86,9 +72,6 @@ const Post = (post) => {
 
                         </div>
                       </CardBody>
-                      {/*<Button className="btn-round" color="danger" size="sm">*/}
-                      {/*  Read more*/}
-                      {/*</Button>*/}
                     </Card>
                   </Col>
                 </Row>

@@ -1,12 +1,11 @@
-import { auth } from '../../firebase/utils';
+import {auth} from '../../firebase/utils';
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { setPosts, setPost, fetchPostsStart } from './posts.actions';
 import { handleAddPost, handleFetchPosts,
-  handleFetchPost, handleDeletePost } from './posts.helpers';
+  handleFetchPost, handleDeletePost, handleAnnouncementPost } from './posts.helpers';
 import postsTypes from './posts.types';
 
 export function* addPost({ payload }) {
-
   try {
     const timestamp = new Date();
     yield handleAddPost({
@@ -17,10 +16,11 @@ export function* addPost({ payload }) {
     yield put(
       fetchPostsStart()
     );
-
-
   } catch (err) {
     // console.log(err);
+  }
+  if (payload.postCategory === 'announcement') {
+    handleAnnouncementPost(payload);
   }
 
 }

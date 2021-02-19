@@ -77,7 +77,7 @@ const Admin = props => {
     <div className="admin">
 
       <div className="callToActions">
-        <ul>
+        <ul className="admin-nav">
           <li>
             <Button onClick={() => toggleModal()}>
               Add new post
@@ -137,20 +137,16 @@ const Admin = props => {
       </Modal>
 
       <div className="managePosts">
+        <h1 className="manage-posts-title">
+          Manage Posts
+        </h1>
 
-        <table border="0" cellPadding="0" cellSpacing="0">
-          <tbody>
-          <tr>
-            <th>
-              <h1>
-                Manage Posts
-              </h1>
-            </th>
-          </tr>
+        <table className="admin-table" border="0" cellPadding="0" cellSpacing="0">
+          <tbody className="table-body">
           <tr>
             <td>
               <table className="results" border="0" cellPadding="10" cellSpacing="0">
-                <tbody>
+                <tbody className="table-body">
                 {(Array.isArray(data) && data.length > 0) && data.map((post, index) => {
                   const {
                     postName,

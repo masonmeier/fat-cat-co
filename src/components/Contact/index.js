@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import {Button, Col, Container, Form, Input, Row} from 'reactstrap';
+import {Button, Col, Container, Form, Row} from 'reactstrap';
 import ContactBackground from '../../assets/images/directory/sacramento.png';
-import {useDispatch} from 'react-redux';
+
 // import axios from 'axios';
 
 //toastify notification
@@ -14,13 +14,12 @@ import FormInput from '../../components/forms/FormInput';
 
 const Contact = props => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const [contactFirstName, setContactFirstName] = useState('');
   const [contactLastName, setContactLastName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactSubject, setContactSubject] = useState('');
   const [contactMessage, setContactMessage] = useState('');
-  const [apiResponse, setApiResponse] = useState('');
+  const [setApiResponse] = useState('');
   const notifyStart = () => toast('Submitting!');
   const notifyFail = () => toast('Email did not send. Please fix your inputs and try again.');
   const notifySuccess = () => toast('Email Sent!');

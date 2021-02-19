@@ -1,5 +1,4 @@
 import { firestore } from '../../firebase/utils';
-import CKEditor from 'ckeditor4-react';
 import React from 'react';
 
 export const handleAddPost = post => {
@@ -17,12 +16,46 @@ export const handleAddPost = post => {
   });
 }
 
-// onChange={evt => setPostDesc( () => {
-//   //clean input for submission
-//   const data = evt.editor.getData()
-//   data.postDesc = data.postDesc.replace( /^<p>/ig, '').replace( /<\/p>$/ig, '');
-//   return data
-// })}
+export const handleAnnouncementPost = (payload) => {
+  let ref = firestore.collection('users').orderBy('createdDate');
+
+  ref
+    .get()
+    .then(snapshot => {
+      const data = [
+        ...snapshot.docs.map(doc => {
+          return {
+            ...doc.data(),
+            documentID: doc.id
+          }
+        })
+      ];
+
+      const emailData = data.map(email => {
+        return email;
+
+      })
+      fetch("http://localhost:5000/announcementEmail", {
+          method: "post",
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(emailData, payload)
+        }
+      )
+        .then (res => {
+          if (res.status !== 200) {
+            console.log('success!')
+          } else {
+            console.log('something went wrong')
+          }
+        })
+    })
+
+    // .catch(err => {
+    //   // reject(err);
+    // })
+}
 
 export const handleFetchPosts = ({ filterType, startAfterDoc, persistPosts=[] }) => {
   return new Promise((resolve, reject) => {
@@ -67,7 +100,6 @@ export const handleDeletePost = documentID => {
       .doc(documentID)
       .delete()
       .then(() => {
-        console.log(documentID, 2)
         resolve();
       })
       .catch(err => {

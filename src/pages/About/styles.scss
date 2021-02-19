@@ -1,7 +1,4 @@
-@font-face {
-  font-family: 'DISKOTEQUE';
-  src: local('DISKOTEQUE'), url('../../fonts/DISKOTEQUE.TTF');
-}
+
 
 .white-text {
   color: white !important;
@@ -25,10 +22,6 @@
 
 #center-cards {
   display: inline-block !important;
-}
-
-.diskoteque {
-  font-family: DISKOTEQUE, serif;
 }
 
 @keyframes slide-in {

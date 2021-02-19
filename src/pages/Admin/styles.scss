@@ -1,19 +1,31 @@
 .admin {
   padding: 0 10px;
 
+  .btn {
+    position: relative;
+  }
+
   .callToActions {
     display: inline-block;
     width: 100%;
     padding: 0;
     margin: 0 auto;
+    text-align: center;
+
+    .admin-nav {
+      position: relative;
+      margin-bottom: 5%;
+    }
 
     ul, li {
       margin: 0;
       padding: 0;
       list-style-type: none;
+
     }
 
     ul {
+      display: inline-block;
       li {
         display: inline-block;
 
@@ -23,13 +35,19 @@
   }
 }
 
-.manageProducts {
+.managePosts {
 
   h1 {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   table.results {
+    .table-body {
+      margin: 0;
+    }
+
     tr {
 
       &:nth-child(even) {
@@ -55,7 +73,7 @@
 }
 
 @media only screen and (max-width: 980px) {
-  .manageProducts {
+  .managePosts {
     table {
       width: 100%;
 

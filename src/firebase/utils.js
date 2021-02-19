@@ -35,7 +35,6 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
       // console.log(err);
     }
   }
-
   return userRef;
 };
 

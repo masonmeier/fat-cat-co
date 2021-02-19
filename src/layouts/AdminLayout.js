@@ -1,42 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signOutUserStart } from '../redux/User/user.actions';
 
-import Header from '../components/Header';
-import VerticalNav from './../components/VerticalNav';
+import {
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
+
 
 const AdminLayout = props => {
-  const dispatch = useDispatch();
 
-  const signOut = () => {
-    dispatch(signOutUserStart());
-  };
+
 
   return (
     <div className="adminLayout">
-      <Header {...props} />
-      <div className="controlPanel">
-        <div className="sidebar">
-          <VerticalNav>
-            <ul>
-              {/*<li>*/}
-              {/*  <Link to="/admin">*/}
-              {/*    Admin Page*/}
-              {/*  </Link>*/}
-              {/*</li>*/}
-              <li>
-                <span className="signOut" onClick={() => signOut()}>
-                  Sign Out
-                </span>
-              </li>
-            </ul>
-          </VerticalNav>
+      <div className="section section-pricing cd-section" id="pricing">
+        {/* ********* PRICING 1 ********* */}
+        <div className="pricing-1 section">
+          <Container>
+            <Row>
+              <Col className="ml-auto mr-auto text-center" md="6">
+                <h2 className="title">Welcome Back ROMAN!</h2>
+                <h5 className="description">
+                  What would you like to do?
+                </h5>
+              </Col>
+            </Row>
+            <div className="space-top" />
+            <div className="content">
+              {props.children}
+            </div>
+          </Container>
         </div>
-        <div className="content">
-          {props.children}
+        {/* ********* END PRICING 1 ********* */}
         </div>
-      </div>
     </div>
   );
 };

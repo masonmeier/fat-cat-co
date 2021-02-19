@@ -1,7 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container } from "reactstrap";
+import { Container } from "reactstrap";
 import Background from '../../assets/images/directory/about-roman.png';
 
 // core components

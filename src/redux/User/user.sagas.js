@@ -28,7 +28,6 @@ export function* emailSignIn({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    console.log('error check in emailSignIn;', err);
     yield put(
       userError(err)
     )
@@ -134,7 +133,6 @@ export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
     yield getSnapshotFromUserAuth(user);
-
   } catch (err) {
     // console.log(err);
   }

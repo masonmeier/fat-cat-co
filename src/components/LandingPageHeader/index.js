@@ -4,14 +4,13 @@ import React from "react";
 import { Button, Container } from "reactstrap";
 import "../../paper-kit/assets/css/bootstrap.min.css";
 import "../../paper-kit/assets/css/paper-kit.css";
-// import "assets/css/paper-kit.min.css";
-// import "assets/css/paper-kit.css.map";
 import "../../paper-kit/assets/demo/demo.css";
 import "../../paper-kit/assets/demo/react-demo.css";
 
 import Logo from '../../assets/images/directory/roman-logo.jpg';
 import './styless.scss';
 import Particles from 'react-particles-js';
+import {Link} from 'react-router-dom';
 
 // core components
 
@@ -101,10 +100,12 @@ function LandingPageHeader() {
         <div className="content-center">
           <Container>
             <div className="motto">
-              <h1 id="landing-title" className="title">Roman</h1>
-              <h3 className="description">
-                A CREATOR OF ALL THINGS FUNK
-              </h3>
+              <Link to={'/blog'}>
+                <h1 id="landing-title" className="title">Roman</h1>
+                <h3 className="description">
+                  A CREATOR OF ALL THINGS FUNK
+                </h3>
+              </Link>
               <br />
             </div>
           </Container>

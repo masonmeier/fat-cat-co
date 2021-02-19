@@ -3,22 +3,11 @@ import React from "react";
 import Sacramento from '../../assets/images/directory/sacramento.png';
 
 // reactstrap components
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+
 
 import './styles.scss'
 
 // core components
-import AboutInfo from "../../components/AboutInfo/AboutInfo";
-import FullBackgroundCard from '../../components/FullBackgroundCard';
 import AboutPageHeader from '../../components/AboutPageHeader';
 
 function About() {

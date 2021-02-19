@@ -83,7 +83,7 @@ const PostResults = ({ }) => {
          style={styles.pageHeader}>
       <FormSelect {...configFilters} />
       <div className="row">
-      <h1 className="diskoteque">Blog</h1>
+      <h1>Blog</h1>
       </div>
       <div className="postResults"
       >

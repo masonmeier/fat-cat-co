@@ -6,7 +6,6 @@ import classnames from "classnames";
 // JavaScript plugin that hides or shows a component based on your scroll
 import Headroom from "headroom.js";
 import { useHistory } from "react-router-dom";
-import {LinkContainer} from 'react-router-bootstrap'
 // reactstrap components
 
 import {
@@ -15,13 +14,11 @@ import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
-  NavbarBrand,
   Navbar,
   Nav,
   NavItem,
   NavLink,
   Container,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 import './styles.scss'
@@ -123,12 +120,6 @@ const Header = props => {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-danger">
                   <DropdownItem
-
-                    onClick={(e) => {e.preventDefault(); history.push('/dashboard')}}
-                  >
-                    My Account
-                  </DropdownItem>
-                  <DropdownItem
                     onClick={(e) => {e.preventDefault(); signOut();}}
                   >
                     Log Out
@@ -159,7 +150,7 @@ const Header = props => {
 
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle className="mr-2" color="default" caret nav>
-                  Catalog
+                  Socials
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-danger" right>
                   <DropdownItem onClick={(e) => {e.preventDefault(); history.push('/blog')}}>
@@ -176,6 +167,12 @@ const Header = props => {
                     target="_blank"
                   >
                     Soundcloud
+                  </DropdownItem>
+                  <DropdownItem
+                    href="https://www.instagram.com/rskachus/"
+                    target="_blank"
+                  >
+                    Instagram
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -8,15 +8,10 @@ class ContactPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = values => {
-    console.log(values);
-  };
-
   render() {
     return(
       <div>
         <Contact  />
-        {/*onSubmit = {this.handleSubmit}*/}
       </div>
     )
   }

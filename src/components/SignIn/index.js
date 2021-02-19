@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import {emailSignInStart, googleSignInStart, userError} from '../../redux/User/user.actions';
+import {emailSignInStart, googleSignInStart} from '../../redux/User/user.actions';
 
 import './styles.scss';
 import LoginBackground from '../../assets/images/directory/sacramento.png'
 
-import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 // import Header from '../Header';

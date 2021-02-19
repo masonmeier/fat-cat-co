@@ -3,10 +3,28 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostStart, setPost } from '../../redux/Posts/posts.actions';
+import './styles.scss';
+
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  PinterestShareButton,
+  RedditShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  TwitterIcon,
+  TumblrIcon,
+  WhatsappIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  EmailIcon,
+  PinterestIcon,
+  RedditIcon,
+} from "react-share";
 
 // reactstrap components
-import { Button } from "reactstrap";
-import Logo from '../../assets/images/directory/roman-logo.jpg';
+import {Button, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from 'reactstrap';
 
 // core components
 
@@ -41,6 +59,7 @@ const PostCard = ({}) => {
 
   }, []);
 
+  //set size transform
   React.useEffect(() => {
     if (window.innerWidth > 991) {
       const updateScroll = () => {
@@ -54,11 +73,18 @@ const PostCard = ({}) => {
       };
     }
   });
+
+  //set background
   const styles = {
     pageHeader: {
       backgroundImage: `url(${postThumbnail})`
     }
   }
+
+  //set path for social share
+  const pathName = window.location.href;
+
+
 
   return (
     <>
@@ -70,7 +96,7 @@ const PostCard = ({}) => {
         <div className="filter" />
         <div className="content-center">
           <div className="motto">
-            <h1 className="title-uppercase text-center diskoteque">{postName}</h1>
+            <h1 className="title-uppercase text-center">{postName}</h1>
             <h3 className="text-center">{postCategory}</h3>
             <br />
             <p>
@@ -78,16 +104,47 @@ const PostCard = ({}) => {
             </p>
             <br />
             <br />
-            <Button
-              className="btn-round"
-              color="danger"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
-              size="lg"
-            >
-              <i className="fa fa-share-alt mr-1 " />
-              Share Post
-            </Button>
+            <div id="dropdown-holder">
+              <UncontrolledDropdown>
+                <DropdownToggle
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  caret
+                  data-toggle="dropdown"
+                  id="dropdownMenuButton"
+                  type="button"
+                  color='danger'
+                >
+                  Share This Post!
+                </DropdownToggle>
+                <DropdownMenu className='dropdown-menu' aria-labelledby="dropdownMenuButton">
+                  <FacebookShareButton url={pathName} >
+                    <FacebookIcon className='social-icon'/>
+                  </FacebookShareButton>
+                  <FacebookShareButton url={pathName}>
+                    <FacebookMessengerIcon className='social-icon'/>
+                  </FacebookShareButton>
+                  <EmailShareButton url={pathName}>
+                    <EmailIcon className='social-icon'/>
+                  </EmailShareButton>
+                  <TumblrShareButton url={pathName}>
+                    <TumblrIcon className='social-icon'/>
+                  </TumblrShareButton>
+                  <WhatsappShareButton url={pathName}>
+                    <WhatsappIcon className='social-icon'/>
+                  </WhatsappShareButton>
+                  <PinterestShareButton url={pathName}>
+                    <PinterestIcon className='social-icon'/>
+                  </PinterestShareButton>
+                  <TwitterShareButton url={pathName}>
+                    <TwitterIcon className='social-icon'/>
+                  </TwitterShareButton>
+                  <RedditShareButton url={pathName}>
+                    <RedditIcon className='social-icon'/>
+                  </RedditShareButton>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </div>
           </div>
         </div>
       </div>

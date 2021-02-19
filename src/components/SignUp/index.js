@@ -5,16 +5,14 @@ import { signUpUserStart, googleSignInStart } from '../../redux/User/user.action
 import LoginBackground from '../../assets/images/directory/sacramento.png'
 import './styles.scss';
 
-import AuthWrapper from '../AuthWrapper';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
 import {Card, CardTitle, Col, Container, Form, Input, Row} from 'reactstrap';
 import { toast } from 'react-toastify';
 import Switch from 'react-bootstrap-switch';
 
+
 const mapState = ({ user }) => user;
-
-
 
 const SignUp = props => {
   const dispatch = useDispatch();
@@ -32,12 +30,33 @@ const SignUp = props => {
 
   useEffect(() => {
     if (currentUser) {
-      reset();
-      notifyRegister()
-      history.push('/');
+      const emailData = {
+        displayName: currentUser.displayName,
+        email: currentUser.email
+      }
+      fetch("http://localhost:5000/registerEmail", {
+          method: "post",
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(emailData)
+        }
+      ).then(() => {
+         return fetch("http://localhost:5000/notifyRegisterEmail", {
+              method: "post",
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: JSON.stringify(emailData)
+            },
+          ).then((res) => {
+            reset()
+            notifyRegister()
+            history.push('/')
+          })}
+      )
     }
     if (error !== null) {
-      console.log(error, 'error check')
       notifyError(error);
       reset()
     }
@@ -53,25 +72,12 @@ const SignUp = props => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const emailData = {
-      displayName,
-      email,
-    }
-    await fetch("http://localhost:5000/registerEmail", {
-        method: "post",
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(emailData)
-      }
-    )
-      .then (
         dispatch(signUpUserStart({
         displayName,
         email,
         password,
         confirmPassword
-      })))
+      }))
   }
 
 
@@ -80,16 +86,12 @@ const SignUp = props => {
       backgroundImage: `url(${LoginBackground})`
     }
   }
-  const handleGoogleSignIn = () => {
-    dispatch(googleSignInStart());
+  const handleGoogleSignIn = async () => {
+      dispatch(googleSignInStart())
   }
 
   const handleSwitch = (elem, state) => {
-    console.log('handleSwitch. elem:', elem);
-    console.log('name:', elem.props.name);
-    console.log('new state:', state);
     setSwitch(state)
-    console.log(switchOn, 'switch on check')
   }
 
 
@@ -104,11 +106,13 @@ const SignUp = props => {
             <Row>
               <Col className="ml-auto" lg="6" md="6" sm="7" xs="12">
                 <div className="info info-horizontal">
+                  <h2 className="info-header">On The Rocks Records</h2>
                   <div className="description">
                     <h3 className="info-header">Access Exclusive Content</h3>
                     <p>
-                      Get access to ROMAN's blog. See exclusive postings only available
-                      to his followers.
+                      Get access to ROMAN's blog as well as the blogs of all of
+                      our artists all for free! See exclusive postings only available
+                      to our followers.
                     </p>
                   </div>
                 </div>
@@ -116,8 +120,9 @@ const SignUp = props => {
                   <div className="description">
                     <h3 className="info-header">Catch Roman's Releases</h3>
                     <p>
-                      Register to be the first to receive announcements on music releases
-                      and projects.
+                      Be the first to receive announcements on music releases
+                      and projects from ROMAN and some of the hottest artists in the
+                      industry.
                     </p>
                   </div>
                 </div>
@@ -227,69 +232,6 @@ const SignUp = props => {
           </Container>
         </div>
       </div>
-      // <AuthWrapper {...configAuthWrapper}>
-      //
-      //     <div className="form-wrap">
-      //
-      //       {errors.length > 0 && (
-      //         <ul>
-      //           {errors.map((err, index) => {
-      //             return (
-      //               <li key={index}>
-      //                 {err}
-      //               </li>
-      //             );
-      //           })}
-      //         </ul>
-      //       )}
-      //
-      //       <form onSubmit={handleFormSubmit}>
-      //         <FormInput
-      //           type='text'
-      //           name='displayName'
-      //           value={displayName}
-      //           placeholder="Full Name"
-      //           handleChange={e => setDisplayName(e.target.value)}
-      //         />
-      //
-      //         <FormInput
-      //           type='email'
-      //           name='email'
-      //           value={email}
-      //           placeholder="Email"
-      //           handleChange={e => setEmail(e.target.value)}
-      //         />
-      //
-      //         <FormInput
-      //           type='password'
-      //           name='password'
-      //           value={password}
-      //           placeholder="Password"
-      //           handleChange={e => setPassword(e.target.value)}
-      //         />
-      //
-      //         <FormInput
-      //           type='password'
-      //           name='confirmPassword'
-      //           value={confirmPassword}
-      //           placeholder="Confirm Password"
-      //           handleChange={e => setConfirmPassword(e.target.value)}
-      //         />
-      //
-      //         <Button type='submit'>
-      //           Register
-      //         </Button>
-      //
-      //       </form>
-      //     </div>
-      //   <div className="socialSignin">
-      //     <div className="row">
-      //       <Button onClick={handleGoogleSignIn}>
-      //         Sign up with Google
-      //       </Button>
-      //     </div>
-      //   </div>
-      // </AuthWrapper>
     );
 }
 

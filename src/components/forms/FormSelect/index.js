@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from 'reactstrap';
-import {Link} from 'react-router-dom';
-
 const FormSelect = ({ options, defaultValue, handleChange, label, ...otherProps }) => {
 
   return (

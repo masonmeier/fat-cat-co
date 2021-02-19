@@ -23,6 +23,11 @@ const AdminToolbar = props => {
             My admin
           </Link>
         </li>
+        <li>
+          <Link to="/">
+            Home
+          </Link>
+        </li>
       </ul>
     </div>
   );

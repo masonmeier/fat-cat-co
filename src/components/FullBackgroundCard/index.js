@@ -5,14 +5,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardImg,
-  CardImgOverlay,
-  CardLink,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  ListGroupItem,
-  ListGroup
 } from "reactstrap";
 import About from '../../assets/images/about-card.jpg';
 

@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 // core components
 import About from '../../assets/images/directory/about-roman.png';
 import './styles.scss'
-import FullBackgroundCard from '../FullBackgroundCard';
 
 function AboutInfo() {
 
@@ -28,7 +27,7 @@ function AboutInfo() {
         >
           <div className="content-center">
             <Container>
-              <h1 className="diskoteque">
+              <h1>
                 FUNK IS THE GAME
               </h1>
                 <p className="white-text">
